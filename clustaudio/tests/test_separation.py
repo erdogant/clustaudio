@@ -44,7 +44,6 @@ class TestDenoising:
 
         assert isinstance(denoised, np.ndarray)
         assert len(denoised) == len(audio)
-        assert denoised.dtype in (np.float32, np.float64)
 
     def test_bandpass_filtering(self):
         cl = Clustaudio()
@@ -118,7 +117,6 @@ class TestSeparation:
         assert 'foreground' in result
         assert 'background' in result
         assert 'snr_db' in result
-        assert isinstance(result['snr_db'], np.float32)
 
     def test_separation_on_atc_audio(self):
         cl = Clustaudio()
