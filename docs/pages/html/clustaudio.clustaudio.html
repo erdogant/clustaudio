@@ -1,0 +1,1384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API References &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Examples" href="Examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html">Core functionalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#generic-functions">Generic functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#merge-expand-clusters">Merge/ Expand Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Find.html">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Performance.html">Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio"><code class="docutils literal notranslate"><span class="pre">clustaudio</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.audioread"><code class="docutils literal notranslate"><span class="pre">clustaudio.audioread()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.check_verbosity"><code class="docutils literal notranslate"><span class="pre">clustaudio.check_verbosity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.clean_init"><code class="docutils literal notranslate"><span class="pre">clustaudio.clean_init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.cluster"><code class="docutils literal notranslate"><span class="pre">clustaudio.cluster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.create_playlist"><code class="docutils literal notranslate"><span class="pre">clustaudio.create_playlist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.denoise"><code class="docutils literal notranslate"><span class="pre">clustaudio.denoise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.embedding"><code class="docutils literal notranslate"><span class="pre">clustaudio.embedding()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.enhance_atc_audio"><code class="docutils literal notranslate"><span class="pre">clustaudio.enhance_atc_audio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.extract_chroma"><code class="docutils literal notranslate"><span class="pre">clustaudio.extract_chroma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.extract_feat"><code class="docutils literal notranslate"><span class="pre">clustaudio.extract_feat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.extract_mfcc"><code class="docutils literal notranslate"><span class="pre">clustaudio.extract_mfcc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.extract_spectral"><code class="docutils literal notranslate"><span class="pre">clustaudio.extract_spectral()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.extract_voice_segments"><code class="docutils literal notranslate"><span class="pre">clustaudio.extract_voice_segments()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.find"><code class="docutils literal notranslate"><span class="pre">clustaudio.find()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.fit_transform"><code class="docutils literal notranslate"><span class="pre">clustaudio.fit_transform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.import_data"><code class="docutils literal notranslate"><span class="pre">clustaudio.import_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.import_example"><code class="docutils literal notranslate"><span class="pre">clustaudio.import_example()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.load"><code class="docutils literal notranslate"><span class="pre">clustaudio.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.move_to_dir"><code class="docutils literal notranslate"><span class="pre">clustaudio.move_to_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.plot"><code class="docutils literal notranslate"><span class="pre">clustaudio.plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.plot_denoise"><code class="docutils literal notranslate"><span class="pre">clustaudio.plot_denoise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.plot_separation"><code class="docutils literal notranslate"><span class="pre">clustaudio.plot_separation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.plot_statistics"><code class="docutils literal notranslate"><span class="pre">clustaudio.plot_statistics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.preprocessing"><code class="docutils literal notranslate"><span class="pre">clustaudio.preprocessing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.save"><code class="docutils literal notranslate"><span class="pre">clustaudio.save()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.separate_foreground_background"><code class="docutils literal notranslate"><span class="pre">clustaudio.separate_foreground_background()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustaudio.clustaudio.clustaudio.unique"><code class="docutils literal notranslate"><span class="pre">clustaudio.unique()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.create_dir"><code class="docutils literal notranslate"><span class="pre">create_dir()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.disable_tqdm"><code class="docutils literal notranslate"><span class="pre">disable_tqdm()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.import_example"><code class="docutils literal notranslate"><span class="pre">import_example()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.listdir"><code class="docutils literal notranslate"><span class="pre">listdir()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.move_files"><code class="docutils literal notranslate"><span class="pre">move_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clustaudio.clustaudio.set_logger"><code class="docutils literal notranslate"><span class="pre">set_logger()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API References</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/clustaudio.clustaudio.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-clustaudio.clustaudio">
+<span id="api-references"></span><h1>API References<a class="headerlink" href="#module-clustaudio.clustaudio" title="Link to this heading"></a></h1>
+<p>Python package clustaudio is for unsupervised clustering of audio files.</p>
+<p>Name        : clustaudio.py
+Author      : E.Taskesen (adapted for audio by AI assistant)
+Contact     : <a class="reference external" href="mailto:erdogant&#37;&#52;&#48;gmail&#46;com">erdogant<span>&#64;</span>gmail<span>&#46;</span>com</a>
+github      : <a class="reference external" href="https://github.com/erdogant/clustaudio">https://github.com/erdogant/clustaudio</a>
+Licence     : See licences</p>
+<dl class="simple">
+<dt>Description<span class="classifier">Audio clustering library for organizing, analyzing, and finding similar audio files</span></dt><dd><p>using various feature extraction methods and clustering algorithms.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">clustaudio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mfcc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tsne'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim_silence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_audio_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_spectrogram_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['wav',</span> <span class="pre">'mp3',</span> <span class="pre">'flac',</span> <span class="pre">'ogg',</span> <span class="pre">'m4a',</span> <span class="pre">'aac']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_pca</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'n_components':</span> <span class="pre">0.95}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_mfcc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'hop_length':</span> <span class="pre">512,</span> <span class="pre">'n_fft':</span> <span class="pre">2048,</span> <span class="pre">'n_mels':</span> <span class="pre">128,</span> <span class="pre">'n_mfcc':</span> <span class="pre">13}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_spectral</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_chroma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'n_chroma':</span> <span class="pre">12}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_fingerprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'algorithm':</span> <span class="pre">'chromaprint'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'cluster_by':</span> <span class="pre">['artist',</span> <span class="pre">'album',</span> <span class="pre">'genre'],</span> <span class="pre">'similarity_threshold':</span> <span class="pre">0.8}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio" title="Link to this definition"></a></dt>
+<dd><p>Clustering of audio files.</p>
+<p>Clustering audio files through pre-processing, feature extraction,
+embedding and cluster evaluation. This library enables:</p>
+<ul class="simple">
+<li><p>Organizing large audio collections by similarity</p></li>
+<li><p>Finding duplicate or similar audio files</p></li>
+<li><p>Genre/mood-based clustering</p></li>
+<li><p>Voice segment extraction</p></li>
+<li><p>Playlist generation from clusters</p></li>
+</ul>
+<p>The following steps are taken:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Step 1. Pre-processing:</dt><dd><p>Audio files are imported with specific extensions ([‘wav’, ‘mp3’, ‘flac’, ‘ogg’, ‘m4a’]).
+Each audio file is loaded with a target sample rate and can be converted to mono.
+Audio can be normalized and trimmed for silence.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Step 2. Feature extraction:</dt><dd><p>Features are extracted using various methods:
+- ‘mfcc’: Mel-Frequency Cepstral Coefficients (default)
+- ‘spectral’: Spectral features (centroid, rolloff, contrast, bandwidth)
+- ‘chroma’: Chromagram features for pitch/harmony analysis
+- ‘mfcc-spectral’: Combined MFCC and spectral features
+- ‘tempogram’: Tempo and rhythm features
+- ‘embeddings’: Deep learning audio embeddings (VGGish, YAMNet, OpenL3)
+- ‘fingerprint’: Audio fingerprinting for duplicate detection
+- ‘metadata’: Use audio metadata (ID3 tags) for clustering</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Step 3. Embedding:</dt><dd><p>The feature space is transformed non-linearly using t-SNE or UMAP.
+The embedding coordinates are used for visualization.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Step 4. Cluster evaluation:</dt><dd><p>The feature space is used for cluster evaluation to determine
+the optimal number of clusters using silhouette, dbindex, or derivative methods.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Step 5. Results and visualization:</dt><dd><p>Results are stored and can be visualized using waveforms, spectrograms,
+scatter plots, and cluster-based audio playback.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>(</em><em>default: 'mfcc'</em><em>)</em>) – <dl class="simple">
+<dt>Method to extract features from audio files:</dt><dd><ul>
+<li><p>’mfcc’ : Mel-Frequency Cepstral Coefficients</p></li>
+<li><p>’spectral’ : Spectral features (centroid, rolloff, contrast, bandwidth)</p></li>
+<li><p>’chroma’ : Chromagram features</p></li>
+<li><p>’mfcc-spectral’ : Combined MFCC and spectral features</p></li>
+<li><p>’tempogram’ : Tempo and rhythm features</p></li>
+<li><p>’mel-spectrogram’ : Mel-scaled spectrogram</p></li>
+<li><p>’embeddings’ : Deep learning embeddings (requires additional setup)</p></li>
+<li><p>’fingerprint’: Audio fingerprinting for duplicates</p></li>
+<li><p>’metadata’: Cluster by audio metadata (artist, album, genre, etc.)</p></li>
+<li><p>None : Use raw audio features</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>embedding</strong> (<em>str</em><em>, </em><em>(</em><em>default: 'tsne'</em><em>)</em>) – <dl class="simple">
+<dt>Perform embedding on extracted features for visualization:</dt><dd><ul>
+<li><p>’tsne’ : t-SNE embedding</p></li>
+<li><p>’umap’ : UMAP embedding</p></li>
+<li><p>None : Use first two features for plotting</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em>, </em><em>(</em><em>default: 22050</em><em>)</em>) – Target sample rate for audio loading (Hz).
+Common values: 22050, 44100, 48000</p></li>
+<li><p><strong>duration</strong> (<em>float</em><em> or </em><em>None</em><em>, </em><em>(</em><em>default: None</em><em>)</em>) – Maximum duration to load from each audio file (seconds).
+None = load entire file
+Setting a value (e.g., 30) loads only first N seconds.</p></li>
+<li><p><strong>mono</strong> (<em>bool</em><em>, </em><em>(</em><em>default: True</em><em>)</em>) – Convert audio to mono (single channel).
+False: Keep stereo/multi-channel audio</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>(</em><em>default: True</em><em>)</em>) – Normalize audio amplitude to [-1, 1] range.</p></li>
+<li><p><strong>trim_silence</strong> (<em>bool</em><em>, </em><em>(</em><em>default: False</em><em>)</em>) – trim_silence audio silence</p></li>
+<li><p><strong>dirpath</strong> (<em>str</em><em>, </em><em>(</em><em>default: 'clustaudio'</em><em>)</em>) – Directory to write temporary files and extracted segments.</p></li>
+<li><p><strong>ext</strong> (<em>list</em><em>, </em><em>(</em><em>default:</em><em> [</em><em>'wav'</em><em>, </em><em>'mp3'</em><em>, </em><em>'flac'</em><em>, </em><em>'ogg'</em><em>, </em><em>'m4a'</em><em>, </em><em>'aac'</em><em>]</em><em>)</em>) – Audio file extensions to process.</p></li>
+<li><p><strong>params_pca</strong> (<em>dict</em><em>, </em><em>default: {'n_components':0.95</em><em>, </em><em>'detect_outliers':None}</em>) – Parameters for PCA dimensionality reduction (used with some methods).</p></li>
+<li><p><strong>params_mfcc</strong> (<em>dict</em><em>, </em><em>default: {'n_mfcc':13</em><em>, </em><em>'n_fft':2048</em><em>, </em><em>'hop_length':512}</em>) – <dl class="simple">
+<dt>Parameters for MFCC feature extraction:</dt><dd><ul>
+<li><p>’n_mfcc’: Number of MFCC coefficients (typically 13-40)</p></li>
+<li><p>’n_fft’: FFT window size</p></li>
+<li><p>’hop_length’: Number of samples between successive frames</p></li>
+<li><p>’n_mels’: Number of mel bands (default: 128)</p></li>
+<li><p>’fmin’: Minimum frequency (Hz, default: 0)</p></li>
+<li><p>’fmax’: Maximum frequency (Hz, default: None = sr/2)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>params_spectral</strong> (<em>dict</em><em>, </em><em>default: {}</em>) – Parameters for spectral feature extraction (uses librosa defaults).</p></li>
+<li><p><strong>params_chroma</strong> (<em>dict</em><em>, </em><em>default: {'n_chroma':12}</em>) – <dl class="simple">
+<dt>Parameters for chroma feature extraction:</dt><dd><ul>
+<li><p>’n_chroma’: Number of chroma bins (default: 12)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>params_fingerprint</strong> (<em>dict</em><em>, </em><em>default: {'algorithm':'chromaprint'}</em>) – <dl class="simple">
+<dt>Parameters for audio fingerprinting:</dt><dd><ul>
+<li><p>’algorithm’: ‘chromaprint’ or other fingerprinting method</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>params_metadata</strong> (<em>dict</em><em>, </em><em>default: {'cluster_by':</em><em>[</em><em>'artist'</em><em>, </em><em>'album'</em><em>, </em><em>'genre'</em><em>]</em><em>}</em>) – <dl class="simple">
+<dt>Parameters for metadata-based clustering:</dt><dd><ul>
+<li><p>’cluster_by’: List of metadata fields to use</p></li>
+<li><p>’similarity_threshold’: Threshold for string matching (0-1)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>use_audio_cache</strong> (<em>bool</em><em> (</em><em>Default: True</em><em>)</em>) – Cache extracted features to disk for faster reprocessing.</p></li>
+<li><p><strong>use_spectrogram_cache</strong> (<em>bool</em><em> (</em><em>Default: True</em><em>)</em>) – Cache computed spectrograms to speed up visualization.</p></li>
+<li><p><strong>ncores</strong> (<em>int</em><em>, </em><em>(</em><em>default: 4</em><em>)</em>) – Number of CPU cores for parallel processing.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em> or </em><em>str</em><em>, </em><em>(</em><em>default: 'info'</em><em>)</em>) – Logging level. Options: ‘debug’, ‘info’, ‘warning’, ‘error’
+Or numeric: 10 (debug), 20 (info), 30 (warning), 40 (error)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>results<span class="classifier">dict</span></dt><dd><dl class="simple">
+<dt>Dictionary with clustering results:</dt><dd><ul class="simple">
+<li><p>feat : Extracted features array</p></li>
+<li><p>xycoord : 2D embedding coordinates</p></li>
+<li><p>pathnames : List of file paths</p></li>
+<li><p>filenames : List of file names</p></li>
+<li><p>labels : Cluster labels</p></li>
+<li><p>sample_rates : Sample rates of loaded files</p></li>
+<li><p>durations : Duration of each file</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Object containing</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize with MFCC features</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load example audio dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster audio files</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Visualize results</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_spectrogram</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find similar audio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;path/to/query.mp3&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Organize files by cluster</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span><span class="n">create_playlists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.audioread">
+<span class="sig-name descname"><span class="pre">audioread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_success</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.audioread" title="Link to this definition"></a></dt>
+<dd><p>Read and preprocess audio file.</p>
+<p>This function loads audio files and applies preprocessing steps:
+1. Load audio with target sample rate
+2. Convert to mono (optional)
+3. Normalize amplitude (optional)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to audio file</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em> or </em><em>None</em>) – Target sample rate (Hz). If None, uses self.params[‘sr’]</p></li>
+<li><p><strong>duration</strong> (<em>float</em><em> or </em><em>None</em>) – Duration to load (seconds). If None, uses self.params[‘duration’]</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – Start reading after offset (seconds)</p></li>
+<li><p><strong>mono</strong> (<em>bool</em><em> or </em><em>None</em>) – Convert to mono. If None, uses self.params[‘mono’]</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em> or </em><em>None</em>) – Normalize amplitude. If None, uses self.params[‘normalize’]</p></li>
+<li><p><strong>return_success</strong> (<em>bool</em>) – If True, return (audio, success) tuple</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>audio</strong> (<em>np.ndarray</em>) – Audio waveform, shape (n_samples,) for mono or (n_channels, n_samples) for stereo</p></li>
+<li><p><strong>success</strong> (<em>bool (only if return_success=True)</em>) – Whether the audio was successfully loaded</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">audioread</span><span class="p">(</span><span class="s1">&#39;audio.wav&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.check_verbosity">
+<span class="sig-name descname"><span class="pre">check_verbosity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.check_verbosity" title="Link to this definition"></a></dt>
+<dd><p>Check the verbosity level.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.clean_init">
+<span class="sig-name descname"><span class="pre">clean_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.clean_init" title="Link to this definition"></a></dt>
+<dd><p>Clean previous results to ensure fresh start.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.cluster">
+<span class="sig-name descname"><span class="pre">cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'agglomerative'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'silhouette'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_clust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_clust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'high'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.cluster" title="Link to this definition"></a></dt>
+<dd><p>Determine optimal number of clusters and assign cluster labels.</p>
+<p>Uses clustaudio library to evaluate different cluster counts and
+select the optimal number based on silhouette, dbindex, or derivative methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster</strong> (<em>str</em>) – Clustering algorithm</p></li>
+<li><p><strong>evaluate</strong> (<em>str</em>) – Evaluation method</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – Distance metric</p></li>
+<li><p><strong>linkage</strong> (<em>str</em>) – Linkage method for hierarchical clustering</p></li>
+<li><p><strong>min_clust</strong> (<em>int</em>) – Minimum clusters to evaluate</p></li>
+<li><p><strong>max_clust</strong> (<em>int</em>) – Maximum clusters to evaluate</p></li>
+<li><p><strong>cluster_space</strong> (<em>str</em>) – ‘high’ for original features, ‘low’ for embedded coordinates</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cluster labels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.create_playlist">
+<span class="sig-name descname"><span class="pre">create_playlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'m3u8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">playlist_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.create_playlist" title="Link to this definition"></a></dt>
+<dd><p>Create audio playlists from clusters.</p>
+<p>Generates playlist files in various formats based on cluster assignments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>int</em><em>, </em><em>list</em><em>, or </em><em>None</em>) – Cluster label(s) to create playlists for.
+None = create playlist for each cluster</p></li>
+<li><p><strong>format</strong> (<em>str</em>) – <dl class="simple">
+<dt>Playlist format:</dt><dd><ul>
+<li><p>’m3u’: M3U format</p></li>
+<li><p>’m3u8’: Extended M3U (default, includes metadata)</p></li>
+<li><p>’pls’: PLS format</p></li>
+<li><p>’json’: JSON format with metadata</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>savedir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory to save playlists. Default: self.params[‘dirpath’]</p></li>
+<li><p><strong>playlist_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Custom playlist name. If None, uses ‘cluster_X’</p></li>
+<li><p><strong>relative_paths</strong> (<em>bool</em>) – Use relative paths in playlist (default: False = absolute)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary mapping labels to playlist paths</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create M3U8 playlists for all clusters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">playlists</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">create_playlist</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;m3u8&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create single playlist for specific cluster</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">playlist</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">create_playlist</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">playlist_name</span><span class="o">=</span><span class="s1">&#39;favorites&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.denoise">
+<span class="sig-name descname"><span class="pre">denoise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectral'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_denoised</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.denoise" title="Link to this definition"></a></dt>
+<dd><p>Apply denoising to audio files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>None</em>) – Path(s) to audio files. If None, uses self.results[‘pathnames’]</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – <dl class="simple">
+<dt>Denoising method:</dt><dd><ul>
+<li><p>’spectral’: Spectral subtraction (default)</p></li>
+<li><p>’wiener’: Wiener filtering</p></li>
+<li><p>’noisereduce’: Advanced noise reduction (requires noisereduce)</p></li>
+<li><p>’median’: Median filtering</p></li>
+<li><p>’bandpass’: Band-pass filtering (good for speech)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>output_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory for denoised files</p></li>
+<li><p><strong>save_denoised</strong> (<em>bool</em>) – Save denoised files to disk</p></li>
+<li><p><strong>**kwargs</strong> – Additional parameters for specific methods</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing denoised audio arrays and paths</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Denoise files before clustering</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">denoised</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">denoise</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">pathnames</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">save_denoised</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster denoised audio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">denoised</span><span class="p">[</span><span class="s1">&#39;pathnames_denoised&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.embedding">
+<span class="sig-name descname"><span class="pre">embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.embedding" title="Link to this definition"></a></dt>
+<dd><p>Compute embedding for visualization.</p>
+<p>Reduces high-dimensional features to 2D for visualization using
+t-SNE or UMAP. The 2D coordinates are used for scatter plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Feature array of shape (n_samples, n_features)</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – Distance metric for embedding (‘euclidean’, ‘cosine’, etc.)</p></li>
+<li><p><strong>embedding</strong> (<em>str</em><em> or </em><em>None</em>) – Embedding method: ‘tsne’, ‘umap’, or None (use first 2 features)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D coordinates of shape (n_samples, 2)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.enhance_atc_audio">
+<span class="sig-name descname"><span class="pre">enhance_atc_audio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aggressive'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.enhance_atc_audio" title="Link to this definition"></a></dt>
+<dd><p>Enhance noisy ATC (Air Traffic Control) communication audio.</p>
+<p>Specialized enhancement for radio communications with:
+- Radio static and interference
+- Wind noise
+- Engine noise
+- Low SNR conditions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>str</em><em> or </em><em>list</em>) – Path(s) to ATC audio files</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – <dl class="simple">
+<dt>Enhancement level:</dt><dd><ul>
+<li><p>’light’: Minimal processing</p></li>
+<li><p>’moderate’: Balanced enhancement</p></li>
+<li><p>’aggressive’: Maximum enhancement (default)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>output_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory for enhanced files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with enhanced audio and paths</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Enhance ATC audio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span><span class="s1">&#39;ATC_recordings/&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster enhanced communications</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.extract_chroma">
+<span class="sig-name descname"><span class="pre">extract_chroma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.extract_chroma" title="Link to this definition"></a></dt>
+<dd><p>Extract chromagram features.</p>
+<p>Chroma features represent the 12 different pitch classes
+(C, C#, D, …, B), useful for music analysis and chord recognition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<em>np.ndarray</em><em> or </em><em>list</em>) – Audio waveform(s)</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em> or </em><em>None</em>) – Sample rate</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters for chroma extraction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chroma features (mean and std for each of 12 pitch classes)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">audioread</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chroma_features</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_chroma</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.extract_feat">
+<span class="sig-name descname"><span class="pre">extract_feat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xraw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.extract_feat" title="Link to this definition"></a></dt>
+<dd><p>Extract features based on the selected method.</p>
+<p>This is the main feature extraction dispatcher that calls the
+appropriate extraction method based on self.params[‘method’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Xraw</strong> (<em>dict</em>) – <dl class="simple">
+<dt>Dictionary containing preprocessed audio data with keys:</dt><dd><ul class="simple">
+<li><p>’audio’: List of audio arrays</p></li>
+<li><p>’pathnames’: List of file paths</p></li>
+<li><p>’filenames’: List of filenames</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extracted features array of shape (n_samples, n_features)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pathnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio1.wav&#39;</span><span class="p">,</span> <span class="s1">&#39;audio2.wav&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">preprocessing</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_feat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.extract_mfcc">
+<span class="sig-name descname"><span class="pre">extract_mfcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.extract_mfcc" title="Link to this definition"></a></dt>
+<dd><p>Extract MFCC (Mel-Frequency Cepstral Coefficients) features.</p>
+<p>MFCCs are widely used audio features that represent the short-term
+power spectrum of sound, commonly used in speech and music analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<em>np.ndarray</em><em> or </em><em>list</em>) – Audio waveform(s). Can be single array or list of arrays.</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em> or </em><em>None</em>) – Sample rate. If None, uses self.params[‘sr’]</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters for librosa.feature.mfcc</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MFCC features. For single audio: shape (n_features,)
+For multiple: shape (n_samples, n_features)
+Features include mean and std of each MFCC coefficient.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;audio.wav&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfcc_features</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_mfcc</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">sr</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.extract_spectral">
+<span class="sig-name descname"><span class="pre">extract_spectral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.extract_spectral" title="Link to this definition"></a></dt>
+<dd><p>Extract spectral features from audio.</p>
+<p>Extracts multiple spectral features that characterize the frequency
+content and distribution of audio:
+- Spectral centroid (brightness)
+- Spectral rolloff (frequency below which X% of energy is contained)
+- Spectral contrast (difference between peaks and valleys)
+- Spectral bandwidth (spread of frequencies)
+- Zero crossing rate (percussiveness)
+- RMS energy (loudness)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<em>np.ndarray</em><em> or </em><em>list</em>) – Audio waveform(s)</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em> or </em><em>None</em>) – Sample rate</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters for spectral feature extraction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral features with mean and std for each feature type</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">audioread</span><span class="p">(</span><span class="s1">&#39;audio.wav&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectral_features</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_spectral</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.extract_voice_segments">
+<span class="sig-name descname"><span class="pre">extract_voice_segments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_segment_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.extract_voice_segments" title="Link to this definition"></a></dt>
+<dd><p>Detect and extract voice/speech segments from audio files.</p>
+<p>Similar to face detection in images, this finds speech segments in audio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>str</em><em> or </em><em>list</em>) – Path(s) to audio file(s)</p></li>
+<li><p><strong>output_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory to save segments</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – VAD method: ‘energy’, ‘webrtcvad’, or ‘librosa’</p></li>
+<li><p><strong>energy_threshold</strong> (<em>float</em>) – Energy threshold for voice detection</p></li>
+<li><p><strong>min_segment_duration</strong> (<em>float</em>) – Minimum segment duration in seconds</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary containing:</dt><dd><p>pathnames : Original file paths
+pathnames_segments : Paths to extracted segments
+timestamps : Start/end times
+num_segments : Number of segments per file</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_voice_segments</span><span class="p">(</span><span class="s1">&#39;podcast.wav&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster the voice segments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">segments</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xnew</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.find" title="Link to this definition"></a></dt>
+<dd><p>Find similar audio files to query audio.</p>
+<p>Finding similar audio can be based on:
+- k-nearest neighbors
+- Statistical significance (probability-based)
+- Or both (union of results)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Xnew</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>np.ndarray</em>) – <dl class="simple">
+<dt>Query audio:</dt><dd><ul>
+<li><p>str: Path to audio file</p></li>
+<li><p>list: List of paths</p></li>
+<li><p>np.ndarray: Audio waveform or features</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em>) – Distance metric. If None, uses metric from fit_transform</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of nearest neighbors to find</p></li>
+<li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>optional</em>) – Significance level for probability-based matching</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary with results for each query containing:</dt><dd><p>y_idx : Indices of similar files
+distance : Distances to query
+y_proba : Probability scores
+y_filenames : Filenames of similar files
+y_pathnames : Paths to similar files
+x_pathnames : Query file path</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find similar to a specific song</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query_song.mp3&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">similar</span><span class="p">[</span><span class="s1">&#39;query_song.mp3&#39;</span><span class="p">][</span><span class="s1">&#39;y_filenames&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'agglomerative'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'silhouette'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_clust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_clust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'high'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">black_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.fit_transform" title="Link to this definition"></a></dt>
+<dd><p>Cluster audio files based on their acoustic similarity.</p>
+<p>This is the main workflow method that:
+1. Imports audio files
+2. Extracts features
+3. Computes embedding for visualization
+4. Evaluates and determines optimal clusters
+5. Returns clustering results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>np.ndarray</em>) – <dl class="simple">
+<dt>Input audio files:</dt><dd><ul>
+<li><p>”c://music//” : Directory path</p></li>
+<li><p>[‘audio1.wav’, …] : List of file paths</p></li>
+<li><p>np.ndarray : Pre-loaded audio or features</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>cluster</strong> (<em>str</em>) – Clustering algorithm: ‘agglomerative’, ‘kmeans’, ‘dbscan’, ‘hdbscan’</p></li>
+<li><p><strong>evaluate</strong> (<em>str</em>) – Cluster evaluation method: ‘silhouette’, ‘dbindex’, ‘derivative’</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – Distance metric: ‘euclidean’, ‘cosine’, ‘manhattan’, etc.</p></li>
+<li><p><strong>linkage</strong> (<em>str</em>) – Linkage method for hierarchical: ‘ward’, ‘single’, ‘complete’, ‘average’</p></li>
+<li><p><strong>min_clust</strong> (<em>int</em>) – Minimum number of clusters to evaluate</p></li>
+<li><p><strong>max_clust</strong> (<em>int</em>) – Maximum number of clusters to evaluate</p></li>
+<li><p><strong>cluster_space</strong> (<em>str</em>) – Feature space for clustering: ‘high’ (original) or ‘low’ (embedded)</p></li>
+<li><p><strong>black_list</strong> (<em>list</em>) – Directories to exclude from scanning</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – Scan subdirectories recursively</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Results dictionary containing:</dt><dd><ul class="simple">
+<li><p>feat: Extracted features</p></li>
+<li><p>xycoord: 2D embedding coordinates</p></li>
+<li><p>pathnames: File paths</p></li>
+<li><p>filenames: File names</p></li>
+<li><p>labels: Cluster labels</p></li>
+<li><p>sample_rates: Sample rates</p></li>
+<li><p>durations: Audio durations</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster audio files</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;path/to/music/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Visualize</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.import_data">
+<span class="sig-name descname"><span class="pre">import_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xraw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">black_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.import_data" title="Link to this definition"></a></dt>
+<dd><p>Import audio files and return in a consistent format.</p>
+<p>This function handles multiple input types and returns a standardized
+dictionary structure. Supports:
+- Directory paths (scans for audio files)
+- List of file paths
+- Pre-loaded audio arrays</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Xraw</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>np.ndarray</em>) – <dl class="simple">
+<dt>Input can be:</dt><dd><ul>
+<li><p>”c://music//” : Path to directory with audio files</p></li>
+<li><p>[‘audio1.wav’, ‘audio2.mp3’, …] : List of file paths</p></li>
+<li><p>[[.., ..], …] : np.array of audio data</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>flatten</strong> (<em>bool</em>) – Kept for API compatibility, typically False for audio</p></li>
+<li><p><strong>black_list</strong> (<em>list</em>) – Exclude directories from processing (e.g., [‘temp’, ‘cache’])</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – Scan subdirectories recursively</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary with keys:</dt><dd><ul class="simple">
+<li><p>’audio’: List of audio arrays</p></li>
+<li><p>’pathnames’: List of file paths</p></li>
+<li><p>’filenames’: List of filenames</p></li>
+<li><p>’sample_rates’: List of sample rates</p></li>
+<li><p>’durations’: List of durations</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.import_example">
+<span class="sig-name descname"><span class="pre">import_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'music'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.import_example" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clustaudio.pkl'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.load" title="Link to this definition"></a></dt>
+<dd><p>Load previously saved model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to saved model</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded results</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.move_to_dir">
+<span class="sig-name descname"><span class="pre">move_to_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'copy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_playlists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.move_to_dir" title="Link to this definition"></a></dt>
+<dd><p>Move or copy audio files into directories by cluster labels.</p>
+<p>Organizes audio files based on clustering results. Can also generate
+playlists for each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_labels</strong> (<em>dict</em><em>, </em><em>optional</em>) – Mapping of cluster labels to directory names.
+Example: {0: ‘rock’, 1: ‘jazz’, 2: ‘classical’}
+None: Auto-generate names like ‘cluster_0’, ‘cluster_1’</p></li>
+<li><p><strong>savedir</strong> (<em>str</em><em>, </em><em>optional</em>) – Base directory for organized files</p></li>
+<li><p><strong>action</strong> (<em>str</em>) – ‘copy’ or ‘move’</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite existing files</p></li>
+<li><p><strong>user_input</strong> (<em>bool</em>) – Ask for confirmation before each cluster</p></li>
+<li><p><strong>create_playlists</strong> (<em>bool</em>) – Generate M3U8 playlists for each cluster</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status dictionary for each moved/copied file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Organize with auto-generated names</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="n">create_playlists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Organize with custom names</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;rock&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;jazz&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;classical&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span><span class="n">target_labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">savedir</span><span class="o">=</span><span class="s1">&#39;/organized_music/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_waveform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_spectrogram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_per_cluster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(16,</span> <span class="pre">12)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.plot" title="Link to this definition"></a></dt>
+<dd><p>Visualize clustered audio files.</p>
+<p>Creates visualization grid showing waveforms and/or spectrograms
+for each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>int</em><em>, </em><em>list</em><em>, or </em><em>None</em>) – Cluster label(s) to plot. None = plot all</p></li>
+<li><p><strong>show_waveform</strong> (<em>bool</em>) – Show waveforms</p></li>
+<li><p><strong>show_spectrogram</strong> (<em>bool</em>) – Show spectrograms</p></li>
+<li><p><strong>max_per_cluster</strong> (<em>int</em>) – Maximum samples per cluster</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/audio/&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plot waveforms for all clusters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plot spectrograms for specific clusters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">show_spectrogram</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.plot_denoise">
+<span class="sig-name descname"><span class="pre">plot_denoise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(14,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.plot_denoise" title="Link to this definition"></a></dt>
+<dd><p>Plot denoising comparison.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of file to plot</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.plot_separation">
+<span class="sig-name descname"><span class="pre">plot_separation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(14,</span> <span class="pre">12)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.plot_separation" title="Link to this definition"></a></dt>
+<dd><p>Plot foreground/background separation results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – Index of file to plot from separation results</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.plot_statistics">
+<span class="sig-name descname"><span class="pre">plot_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(14,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.plot_statistics" title="Link to this definition"></a></dt>
+<dd><p>Plot comprehensive cluster statistics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>figsize</strong> (<em>tuple</em>) – Figure size</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.preprocessing">
+<span class="sig-name descname"><span class="pre">preprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim_silence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.preprocessing" title="Link to this definition"></a></dt>
+<dd><p>Preprocess audio files and return consistent output.</p>
+<p>This function handles multiple input types and applies preprocessing:
+1. Load audio files
+2. Convert to target sample rate
+3. Convert to mono (optional)
+4. Trim silence (optional)
+5. Normalize amplitude (optional)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>np.ndarray</em>) – <dl class="simple">
+<dt>Input audio files:</dt><dd><ul>
+<li><p>str: Path to directory or single file</p></li>
+<li><p>list: List of file paths</p></li>
+<li><p>np.ndarray: Pre-loaded audio array</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>sr</strong> (<em>int</em><em> or </em><em>None</em>) – Target sample rate</p></li>
+<li><p><strong>duration</strong> (<em>float</em><em> or </em><em>None</em>) – Maximum duration per file (seconds)</p></li>
+<li><p><strong>mono</strong> (<em>bool</em><em> or </em><em>None</em>) – Convert to mono</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em> or </em><em>None</em>) – Normalize amplitude</p></li>
+<li><p><strong>trim_silence</strong> (<em>bool</em>) – Remove leading/trailing silence</p></li>
+<li><p><strong>flatten</strong> (<em>bool</em>) – Flatten audio to 1D (for compatibility, typically False for audio)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary containing:</dt><dd><ul class="simple">
+<li><p>’audio’: List of audio arrays</p></li>
+<li><p>’pathnames’: List of file paths</p></li>
+<li><p>’filenames’: List of filenames</p></li>
+<li><p>’sample_rates’: List of sample rates</p></li>
+<li><p>’durations’: List of durations (seconds)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clustaudio.pkl'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.save" title="Link to this definition"></a></dt>
+<dd><p>Save model to disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to save file</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite if exists</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Success status</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.separate_foreground_background">
+<span class="sig-name descname"><span class="pre">separate_foreground_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectral_masking'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">denoise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">denoise_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spectral'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_both</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.separate_foreground_background" title="Link to this definition"></a></dt>
+<dd><p>Separate foreground (signal) from background (noise) in audio files.</p>
+<p>This is particularly useful for noisy communications like ATC, radio transmissions,
+or any audio with significant background noise. Similar to VAD but extracts both
+signal and noise components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>str</em><em> or </em><em>list</em>) – Path(s) to audio file(s)</p></li>
+<li><p><strong>output_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory for separated files</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – <dl class="simple">
+<dt>Separation method:</dt><dd><ul>
+<li><p>’spectral_masking’: Spectral masking based on SNR (default)</p></li>
+<li><p>’harmonic_percussive’: HPSS-based separation</p></li>
+<li><p>’nmf’: Non-negative matrix factorization</p></li>
+<li><p>’wiener’: Wiener filter approach</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>denoise</strong> (<em>bool</em>) – Apply denoising before separation</p></li>
+<li><p><strong>denoise_method</strong> (<em>str</em>) – Denoising method: ‘spectral’, ‘wiener’, ‘bandpass’, ‘noisereduce’</p></li>
+<li><p><strong>save_both</strong> (<em>bool</em>) – Save both foreground and background files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary containing:</dt><dd><p>results : List of separation results per file
+pathnames_foreground : Paths to foreground audio files
+pathnames_background : Paths to background audio files
+snr_db : Signal-to-noise ratios</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Separate foreground/background</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;ATC_recording.wav&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral_masking&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">denoise</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster foreground (voice)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice_clusters</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Cluster background (noise types)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">noise_clusters</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;pathnames_background&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.clustaudio.unique">
+<span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.clustaudio.unique" title="Link to this definition"></a></dt>
+<dd><p>Find representative (centroid) audio file for each cluster.</p>
+<p>For each cluster, finds the audio file closest to the cluster center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metric</strong> (<em>str</em><em> or </em><em>None</em>) – Distance metric to use</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Dictionary with representative samples:</dt><dd><ul class="simple">
+<li><p>labels: Cluster labels</p></li>
+<li><p>idx: Indices of representative samples</p></li>
+<li><p>xycoord_center: Coordinates of cluster centers</p></li>
+<li><p>pathnames: Paths to representative files</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.create_dir">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">create_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savedir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.create_dir" title="Link to this definition"></a></dt>
+<dd><p>Create directory for file organization.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.disable_tqdm">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">disable_tqdm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.disable_tqdm" title="Link to this definition"></a></dt>
+<dd><p>Determine if tqdm progress bars should be disabled.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.get_logger">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.get_logger" title="Link to this definition"></a></dt>
+<dd><p>Return current logger level.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.import_example">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">import_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'music'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.import_example" title="Link to this definition"></a></dt>
+<dd><p>Import example audio dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>str</em>) – Dataset name: ‘music’, ‘speech’, ‘environmental’</p></li>
+<li><p><strong>url</strong> (<em>str</em><em> or </em><em>None</em>) – Custom URL to download from</p></li>
+<li><p><strong>verbose</strong> (<em>str</em>) – Logging level</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Audio file paths or data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list or np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.listdir">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['wav',</span> <span class="pre">'mp3',</span> <span class="pre">'flac',</span> <span class="pre">'ogg',</span> <span class="pre">'m4a',</span> <span class="pre">'aac']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">black_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.listdir" title="Link to this definition"></a></dt>
+<dd><p>Recursively collect audio files from directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirpath</strong> (<em>str</em>) – Directory path to scan</p></li>
+<li><p><strong>ext</strong> (<em>list</em>) – List of file extensions to include</p></li>
+<li><p><strong>black_list</strong> (<em>list</em>) – Directory names to exclude</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – Scan subdirectories</p></li>
+<li><p><strong>Returns</strong> – list
+List of file paths</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.move_files">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">move_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savedir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'copy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.move_files" title="Link to this definition"></a></dt>
+<dd><p>Move or copy audio files to a directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathnames</strong> (<em>list</em>) – List of file paths</p></li>
+<li><p><strong>savedir</strong> (<em>str</em>) – Destination directory</p></li>
+<li><p><strong>action</strong> (<em>str</em>) – ‘move’ or ‘copy’</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – Overwrite existing files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status for each file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="clustaudio.clustaudio.set_logger">
+<span class="sig-prename descclassname"><span class="pre">clustaudio.clustaudio.</span></span><span class="sig-name descname"><span class="pre">set_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">[&lt;class</span> <span class="pre">'str'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'int'&gt;]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clustaudio.clustaudio.set_logger" title="Link to this definition"></a></dt>
+<dd><p>Set the logger verbosity level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>verbose</strong> (<em>str</em><em> or </em><em>int</em>) – <dl class="simple">
+<dt>Verbosity level:</dt><dd><ul class="simple">
+<li><p>[0, 60, None, ‘silent’, ‘off’]: No messages</p></li>
+<li><p>[10, ‘debug’]: Debug and above</p></li>
+<li><p>[20, ‘info’]: Info and above</p></li>
+<li><p>[30, ‘warning’]: Warning and above</p></li>
+<li><p>[40, ‘error’]: Error only</p></li>
+<li><p>[50, ‘critical’]: Critical only</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

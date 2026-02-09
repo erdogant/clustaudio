@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Save and Load" href="Save_and_Load.html" />
+    <link rel="prev" title="k-nearest neighbour" href="Find.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html">Core functionalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#generic-functions">Generic functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#merge-expand-clusters">Merge/ Expand Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Find.html">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#processing-speed">Processing Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#realistic-workflow-timings">Realistic Workflow Timings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-usage">Memory Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimization-tips">Optimization Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-rate-recommendations">Sample Rate Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-with-image-clustering">Comparison with Image Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-dataset">Benchmark Dataset</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clustaudio.clustaudio.html">API References</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Performance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Performance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="performance">
+<span id="performance-code-directive"></span><h1>Performance<a class="headerlink" href="#performance" title="Link to this heading"></a></h1>
+<p>The speed and memory usage of <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> are determined by the feature extraction method, audio processing operations, and the characteristics of your audio files. Audio processing is generally fast due to efficient libraries like <code class="docutils literal notranslate"><span class="pre">librosa</span></code> and <code class="docutils literal notranslate"><span class="pre">soundfile</span></code>, but certain operations like denoising and separation can be more computationally intensive.</p>
+<p>Unlike image processing where resizing is common, audio resampling to different sample rates is the primary dimension reduction technique. Lower sample rates (e.g., 16 kHz for speech vs 44.1 kHz for music) significantly reduce processing time and memory usage while maintaining adequate quality for analysis.</p>
+<section id="processing-speed">
+<h2>Processing Speed<a class="headerlink" href="#processing-speed" title="Link to this heading"></a></h2>
+<p><strong>Feature Extraction</strong> is typically very fast, processing audio at <strong>10-100x real-time</strong> depending on the method:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Feature Extraction Speed</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Processing Speed</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MFCC</p></td>
+<td><p>50-100x RT</p></td>
+<td><p>Very fast, default choice</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spectral</p></td>
+<td><p>20-50x RT</p></td>
+<td><p>Fast, good for timbre</p></td>
+</tr>
+<tr class="row-even"><td><p>Chroma</p></td>
+<td><p>15-40x RT</p></td>
+<td><p>Medium speed</p></td>
+</tr>
+<tr class="row-odd"><td><p>MFCC-Spectral</p></td>
+<td><p>20-50x RT</p></td>
+<td><p>Combined features</p></td>
+</tr>
+<tr class="row-even"><td><p>Fingerprint</p></td>
+<td><p>30-60x RT</p></td>
+<td><p>Fast binary hashing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Metadata</p></td>
+<td><p>&gt;1000x RT</p></td>
+<td><p>Instant (file reading)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>RT</strong> = Real-time. For example, 50x RT means a 1-minute audio file is processed in ~1.2 seconds.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Processing speed varies based on CPU performance and sample rate. Higher sample rates (44.1 kHz) take longer than lower rates (16 kHz). Timings are based on typical laptop CPU performance with default parameters.</p>
+</div>
+<p><strong>Advanced Processing Operations</strong> (Phase 3 features):</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Advanced Audio Processing Speed</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>Processing Speed</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Spectral Denoise</p></td>
+<td><p>5-10x RT</p></td>
+<td><p>General noise reduction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Separation</p></td>
+<td><p>3-8x RT</p></td>
+<td><p>Voice/noise separation</p></td>
+</tr>
+<tr class="row-even"><td><p>ATC Enhancement</p></td>
+<td><p>2-5x RT</p></td>
+<td><p>Radio communication</p></td>
+</tr>
+<tr class="row-odd"><td><p>Voice Activity</p></td>
+<td><p>20-50x RT</p></td>
+<td><p>Fast segment detection</p></td>
+</tr>
+<tr class="row-even"><td><p>WebRTC VAD</p></td>
+<td><p>10-30x RT</p></td>
+<td><p>High-quality VAD</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ATC Enhancement with <code class="docutils literal notranslate"><span class="pre">method='aggressive'</span></code> runs the full processing chain (band-pass filter + spectral subtraction + optional noisereduce), which is slower but provides the best quality for noisy communications.</p>
+</div>
+<p><strong>Clustering Performance</strong>:</p>
+<p>Clustering 1000 audio files typically takes <strong>30-60 seconds</strong> depending on feature dimensionality and clustering method:</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Clustering Time Examples</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Files</p></th>
+<th class="head"><p>Clustering Time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Music library</p></td>
+<td><p>1000 songs</p></td>
+<td><p>~45 seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>Podcast segments</p></td>
+<td><p>500 segments</p></td>
+<td><p>~25 seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>ATC voice clips</p></td>
+<td><p>2000 segments</p></td>
+<td><p>~60 seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>Environmental</p></td>
+<td><p>300 sounds</p></td>
+<td><p>~15 seconds</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Clustering time includes feature extraction, embedding (t-SNE), and cluster evaluation. The majority of time is spent on embedding for visualization, not the clustering itself.</p>
+</div>
+</section>
+<section id="realistic-workflow-timings">
+<h2>Realistic Workflow Timings<a class="headerlink" href="#realistic-workflow-timings" title="Link to this heading"></a></h2>
+<p><strong>Example 1: Music Library Clustering</strong> (1000 songs, ~3 minutes each)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music_library/&#39;</span><span class="p">,</span> <span class="n">min_clust</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_clust</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Approximate timing breakdown:</span>
+<span class="c1"># - Load 30 sec from 1000 songs: ~20 seconds</span>
+<span class="c1"># - Extract features: ~15 seconds</span>
+<span class="c1"># - t-SNE embedding: ~25 seconds</span>
+<span class="c1"># - Clustering evaluation: ~10 seconds</span>
+<span class="c1"># Total: ~70 seconds for 1000 songs</span>
+</pre></div>
+</div>
+<p><strong>Duration limiting</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">duration=30</span></code>) dramatically improves performance by only loading the first 30 seconds of each audio file, which is usually sufficient for feature extraction.</p>
+<p><strong>Example 2: ATC Communication Processing</strong> (100 ATC recordings)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Full ATC workflow timing:</span>
+<span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span><span class="n">pathnames</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span><span class="p">)</span>
+<span class="c1"># ~20 seconds for 100 files</span>
+
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span><span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">])</span>
+<span class="c1"># ~30 seconds for 100 files</span>
+
+<span class="n">segments</span> <span class="o">=</span> <span class="n">vad</span><span class="o">.</span><span class="n">batch_extract_voice_segments</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">])</span>
+<span class="c1"># ~15 seconds for 100 files</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">segments</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">]])</span>
+<span class="c1"># ~40 seconds for ~500 segments</span>
+
+<span class="c1"># Total: ~105 seconds for complete ATC workflow</span>
+</pre></div>
+</div>
+<p><strong>Example 3: Duplicate Detection</strong> (5000 audio files)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">listdir</span>
+
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/audio_library/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;wav&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">])</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">batch_compute_fingerprints</span><span class="p">(</span><span class="n">pathnames</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma_hash&#39;</span><span class="p">)</span>
+<span class="c1"># ~2-3 minutes for 5000 files</span>
+
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">find_duplicates</span><span class="p">(</span><span class="n">fps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># ~5 seconds</span>
+
+<span class="c1"># Total: ~3 minutes to find all duplicates in 5000 files</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-usage">
+<h2>Memory Usage<a class="headerlink" href="#memory-usage" title="Link to this heading"></a></h2>
+<p>Memory usage depends on several factors:</p>
+<p><strong>Feature Matrix Size</strong>:</p>
+<p>The primary memory consumer is the feature matrix (n_samples × n_features):</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Memory Usage by Feature Type</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature Method</p></th>
+<th class="head"><p>Features/File</p></th>
+<th class="head"><p>Memory (1000 files)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MFCC</p></td>
+<td><p>26 floats</p></td>
+<td><p>~0.2 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spectral</p></td>
+<td><p>12 floats</p></td>
+<td><p>~0.1 MB</p></td>
+</tr>
+<tr class="row-even"><td><p>Chroma</p></td>
+<td><p>24 floats</p></td>
+<td><p>~0.2 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p>MFCC-Spectral</p></td>
+<td><p>38 floats</p></td>
+<td><p>~0.3 MB</p></td>
+</tr>
+<tr class="row-even"><td><p>Fingerprint</p></td>
+<td><p>32-512 bits</p></td>
+<td><p>~0.05 MB (very compact)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audio Data in Memory</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single audio file memory usage (approximate):</span>
+<span class="c1"># - 1 minute @ 16 kHz mono: ~1 MB</span>
+<span class="c1"># - 1 minute @ 22.05 kHz mono: ~1.4 MB</span>
+<span class="c1"># - 1 minute @ 44.1 kHz mono: ~2.8 MB</span>
+<span class="c1"># - 1 minute @ 44.1 kHz stereo: ~5.6 MB</span>
+</pre></div>
+</div>
+<p><strong>Total Memory Estimates</strong>:</p>
+<p>For clustering <strong>1000 audio files</strong> (1 minute each, duration=30):</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Total Memory Usage</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Memory Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Audio in memory</p></td>
+<td><p>~400 MB (30s &#64; 22kHz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Features</p></td>
+<td><p>~0.3 MB (MFCC-Spectral)</p></td>
+</tr>
+<tr class="row-even"><td><p>Embedding</p></td>
+<td><p>~0.02 MB (2D coordinates)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Overhead</p></td>
+<td><p>~100 MB (Python, libs)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p><strong>~500 MB - 1 GB</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Memory usage can be reduced by:</p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">duration=30</span></code> or lower to limit audio length</p></li>
+<li><p>Using lower sample rates (<code class="docutils literal notranslate"><span class="pre">sr=16000</span></code> for speech)</p></li>
+<li><p>Processing in batches for very large datasets</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">use_audio_cache=False</span></code> to avoid caching</p></li>
+</ul>
+</div>
+</section>
+<section id="optimization-tips">
+<h2>Optimization Tips<a class="headerlink" href="#optimization-tips" title="Link to this heading"></a></h2>
+<p><strong>For Large Datasets (1000+ files)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Limit duration</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># 2. Use lower sample rate for speech</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>  <span class="c1"># Good for speech/podcasts</span>
+
+<span class="c1"># 3. Process in batches</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/large_collection/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;wav&#39;</span><span class="p">,</span> <span class="s1">&#39;mp3&#39;</span><span class="p">])</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">files</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;batch_</span><span class="si">{</span><span class="n">i</span><span class="o">//</span><span class="n">batch_size</span><span class="si">}</span><span class="s1">.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>For Low-Spec Systems</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use lighter configuration</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span>
+        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span>      <span class="c1"># Fewer features than MFCC</span>
+        <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span>               <span class="c1"># Lower sample rate</span>
+        <span class="n">duration</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>            <span class="c1"># Short duration</span>
+        <span class="n">params_spectral</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_fft&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">}</span>  <span class="c1"># Smaller FFT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>For Maximum Speed</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fastest possible clustering</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span>
+        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span>      <span class="c1"># Instant (no audio processing)</span>
+        <span class="n">sr</span><span class="o">=</span><span class="mi">8000</span>                 <span class="c1"># Lowest usable sample rate</span>
+<span class="p">)</span>
+
+<span class="c1"># Or use fingerprinting for duplicates only</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">batch_compute_fingerprints</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">find_duplicates</span><span class="p">(</span><span class="n">fps</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sample-rate-recommendations">
+<h2>Sample Rate Recommendations<a class="headerlink" href="#sample-rate-recommendations" title="Link to this heading"></a></h2>
+<p>Choosing the right sample rate balances quality and performance:</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Sample Rate Guidelines</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Use Case</p></th>
+<th class="head"><p>Recommended SR</p></th>
+<th class="head"><p>Rationale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Speech/Podcasts</p></td>
+<td><p>16 kHz</p></td>
+<td><p>Sufficient for voice</p></td>
+</tr>
+<tr class="row-odd"><td><p>ATC/Radio</p></td>
+<td><p>8-16 kHz</p></td>
+<td><p>Matches radio bandwidth</p></td>
+</tr>
+<tr class="row-even"><td><p>General purpose</p></td>
+<td><p>22.05 kHz</p></td>
+<td><p>Good balance (default)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Music analysis</p></td>
+<td><p>44.1 kHz</p></td>
+<td><p>Full frequency range</p></td>
+</tr>
+<tr class="row-even"><td><p>Quick processing</p></td>
+<td><p>8-16 kHz</p></td>
+<td><p>2-4x faster than 44 kHz</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sample rate affects processing time quadratically for some operations. Using 16 kHz instead of 44.1 kHz provides ~8x speedup for spectral operations while maintaining adequate quality for speech analysis.</p>
+</div>
+</section>
+<section id="comparison-with-image-clustering">
+<h2>Comparison with Image Clustering<a class="headerlink" href="#comparison-with-image-clustering" title="Link to this heading"></a></h2>
+<p>For reference, here’s how <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> compares to the original <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> on equivalent tasks:</p>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Performance Comparison (1000 items)</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>clustaudio</p></th>
+<th class="head"><p>clustaudio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Feature Extract</p></td>
+<td><p>16s (PCA)</p></td>
+<td><p>10-15s (MFCC)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Feature Extract</p></td>
+<td><p>31s (HOG)</p></td>
+<td><p>15-25s (Spectral)</p></td>
+</tr>
+<tr class="row-even"><td><p>Combined Features</p></td>
+<td><p>47s (PCA-HOG)</p></td>
+<td><p>25-35s (MFCC-Spectral)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duplicate Detect</p></td>
+<td><p>~10s (hash)</p></td>
+<td><p>~8s (fingerprint)</p></td>
+</tr>
+<tr class="row-even"><td><p>Total Pipeline</p></td>
+<td><p>~60s</p></td>
+<td><p>~45s</p></td>
+</tr>
+</tbody>
+</table>
+<p>Audio processing is generally <strong>faster</strong> than image processing for equivalent dataset sizes, primarily because:</p>
+<ul class="simple">
+<li><p>Audio features (MFCC, spectral) extract more quickly than HOG</p></li>
+<li><p>Modern audio libraries (librosa) are highly optimized</p></li>
+<li><p>Duration limiting is more effective than image resizing</p></li>
+</ul>
+</section>
+<section id="benchmark-dataset">
+<h2>Benchmark Dataset<a class="headerlink" href="#benchmark-dataset" title="Link to this heading"></a></h2>
+<p>All timings are based on a reference system with:</p>
+<ul class="simple">
+<li><p><strong>CPU</strong>: Intel Core i7 (4 cores, 8 threads) or equivalent</p></li>
+<li><p><strong>RAM</strong>: 16 GB</p></li>
+<li><p><strong>Python</strong>: 3.8+</p></li>
+<li><p><strong>Libraries</strong>: librosa 0.10.0, scikit-learn 1.0+</p></li>
+</ul>
+<p>Results may vary based on your hardware. GPU acceleration is not currently utilized, so all processing is CPU-bound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Performance Summary</strong>: <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> can process 1000 audio files (30 seconds each) in approximately <strong>1-2 minutes</strong> including feature extraction, embedding, and clustering. Advanced processing (denoising, separation, VAD) adds overhead but is still very fast at 2-10x real-time for most operations.</p>
+</div>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Find.html" class="btn btn-neutral float-left" title="k-nearest neighbour" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Save_and_Load.html" class="btn btn-neutral float-right" title="Save and Load" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

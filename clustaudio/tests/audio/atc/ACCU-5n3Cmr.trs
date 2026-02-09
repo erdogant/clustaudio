@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-5n3Cmr.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="10.22">
+<Turn startTime="0" endTime="10.22">
+<Sync time="0.000"/>
+[air]Praha good evening (El Al (elal)) [ehm_??] 5 2 1 level 3 4 0 approaching [unintelligible]
+<Sync time="4.160"/>
+..
+<Sync time="5.190"/>
+[ground]El Al 5 2 1 Praha good evening radar con+
+<Sync time="7.620"/>
+..
+<Sync time="8.550"/>
+[air]thank you madam
+<Sync time="9.420"/>
+..
+<Sync time="10.220"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

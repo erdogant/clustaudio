@@ -1,0 +1,2 @@
+include clustaudio/tests/audio/atc/*.wav
+include clustaudio/tests/audio/various/*.wav

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-1ZvQqb.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="53.25">
+<Turn startTime="0" endTime="53.25">
+<Sync time="0.000"/>
+..
+<Sync time="1.100"/>
+[air][czech_|]Dobrý den Praho[|_czech] Skytravel 6 6 1 descending flight level 3 4 0
+<Sync time="5.530"/>
+..
+<Sync time="5.860"/>
+[ground][czech_|]dobrý den[|_czech] Skytravel 6 6 1 Praha radar contact
+<Sync time="9.000"/>
+..
+<Sync time="15.300"/>
+[air]and [ehm_??] Skytravel 6 6 1 are they gonna keep the [ehm_??] runway 1 3 in use
+<Sync time="19.790"/>
+..
+<Sync time="21.760"/>
+[ground][ehm_??] stand by
+<Sync time="22.580"/>
+..
+<Sync time="26.210"/>
+[ground][speaker] Lufthansa 4 C K [ehm_??] contact Bratislava on 1 3 4 4 7 5
+<Sync time="31.930"/>
+..
+<Sync time="32.700"/>
+[air_|]ok we try 3 4 4 seventy 5 4 C K bye bye [noise][|_air] [ground_|]bye bye[|_ground]
+<Sync time="38.260"/>
+..
+<Sync time="44.860"/>
+[ground][ehm_??] Skytravel 6 6 1 [unintelligible] to my last information you may expect runway 1 3
+<Sync time="49.700"/>
+..
+<Sync time="50.250"/>
+[air]thank you understood
+<Sync time="51.700"/>
+..
+<Sync time="53.250"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

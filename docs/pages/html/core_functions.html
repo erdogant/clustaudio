@@ -1,0 +1,984 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core functionalities &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MFCC" href="Feature_Extraction.html" />
+    <link rel="prev" title="Installation" href="Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core functionalities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fit-and-transform">Fit and transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-data">import_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-feat">extract_feat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#embedding">embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster">cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-voice-segments">extract_voice_segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#separate-foreground-background">separate_foreground_background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#denoise">denoise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enhance-atc-audio">enhance_atc_audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find">find</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unique">unique</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#generic-functions">Generic functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wget">wget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unzip">unzip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listdir">listdir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-logger">set_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-mfcc">extract_mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-spectral">extract_spectral</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#merge-expand-clusters">Merge/ Expand Clusters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#optimized-clusters">Optimized Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#force-to-k-clusters">Force to K clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-clusters-by-dendrogram-threshold">Set clusters by dendrogram threshold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selection-on-the-cluster-labels">Selection on the cluster labels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Find.html">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Performance.html">Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clustaudio.clustaudio.html">API References</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Core functionalities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/core_functions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>This section describes the core functionalities of <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code>.
+Many of the functionalities are written in a generic manner which allows to be used in various applications.</p>
+<section id="core-functionalities">
+<h1>Core functionalities<a class="headerlink" href="#core-functionalities" title="Link to this heading"></a></h1>
+<p>The are 8 core functionalities of <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> that allows to preprocess the input audio files, robustly determines the optimal number of clusters, and then optimize the clusters if desired.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>fit_transform()</p></li>
+<li><p>extract_voice_segments()</p></li>
+<li><p>separate_foreground_background()</p></li>
+<li><p>denoise()</p></li>
+<li><p>enhance_atc_audio()</p></li>
+<li><p>cluster()</p></li>
+<li><p>find()</p></li>
+<li><p>unique()</p></li>
+<li><p>move_to_dir()</p></li>
+</ul>
+</div></blockquote>
+<section id="fit-and-transform">
+<h2>Fit and transform<a class="headerlink" href="#fit-and-transform" title="Link to this heading"></a></h2>
+<p>The <em>fit_transform</em> function allows to detect natural groups or clusters of audio files. It works using a multi-step process of pre-processing, extracting the features, and evaluating the optimal number of clusters across the feature space.
+The optimal number of clusters are determined using well known methods such as <em>silhouette, dbindex, and derivatives</em> in combination with clustering methods, such as <em>agglomerative, kmeans, dbscan and hdbscan</em>.
+Based on the clustering results, the unique audio samples are also gathered.</p>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.fit_transform" title="clustaudio.clustaudio.clustaudio.fit_transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.fit_transform()</span></code></a></p>
+<p>The fit_transform contains 4 core functionalities that can also be used separately which provides more control:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>import_data()</p></li>
+<li><p>extract_feat()</p></li>
+<li><p>embedding()</p></li>
+<li><p>cluster()</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="import-data">
+<h2>import_data<a class="headerlink" href="#import-data" title="Link to this heading"></a></h2>
+<p>The input for the <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.import_data" title="clustaudio.clustaudio.clustaudio.import_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.import_data()</span></code></a> can have multiple forms; path to directory, list of strings and array-like input.
+The following steps are used for which the parameters need to be set during initialization:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Audio files are imported with specific extensions ([‘wav’,’mp3’,’flac’,’ogg’,’m4a’,’aac’]),</p></li>
+<li><p>Each input audio file can be converted to mono.</p></li>
+<li><p>Audio is resampled to target sample rate (e.g., sr=22050 Hz for music, sr=16000 Hz for speech).</p></li>
+<li><p>Duration can be limited (e.g., first 30 seconds only for faster processing).</p></li>
+<li><p>Independent of the input, a dict is returned in a consistent manner.</p></li>
+</ol>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Check whether it is dir, list of files or array-like</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;audio&#39;, &#39;feat&#39;, &#39;xycoord&#39;, &#39;pathnames&#39;, &#39;labels&#39;, &#39;filenames&#39;, &#39;sample_rates&#39;, &#39;durations&#39;])</span>
+<span class="c1"># Note that only the keys audio, pathnames, filenames, sample_rates, and durations are filled.</span>
+</pre></div>
+</div>
+</section>
+<section id="extract-feat">
+<h2>extract_feat<a class="headerlink" href="#extract-feat" title="Link to this heading"></a></h2>
+<p>Extracting of features is performed in the <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.extract_feat" title="clustaudio.clustaudio.clustaudio.extract_feat"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.extract_feat()</span></code></a> function.
+There are different options to extract features from audio files as listed below. Note that these settings need to be set during initialization.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘mfcc’ : Mel-Frequency Cepstral Coefficients (default for speech/audio)</p></li>
+<li><p>‘spectral’ : Spectral features (centroid, rolloff, contrast, bandwidth, ZCR, RMS)</p></li>
+<li><p>‘chroma’ : Chromagram features for pitch/harmony analysis</p></li>
+<li><p>‘mfcc-spectral’ : Combined MFCC and spectral features</p></li>
+<li><p>‘tempogram’ : Tempo and rhythm features</p></li>
+<li><p>‘mel-spectrogram’ : Mel-scaled spectrogram features</p></li>
+<li><p>‘fingerprint’ : Audio fingerprinting (chroma_hash, spectral_hash, chromaprint)</p></li>
+<li><p>‘metadata’ : Cluster by audio metadata (ID3 tags, artist, album, genre)</p></li>
+<li><p>None : Use raw audio features</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Check whether it is dir, list of files or array-like</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="c1"># Extract features using method</span>
+<span class="n">Xfeat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_feat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;audio&#39;, &#39;feat&#39;, &#39;xycoord&#39;, &#39;pathnames&#39;, &#39;labels&#39;, &#39;filenames&#39;, &#39;sample_rates&#39;, &#39;durations&#39;])</span>
+<span class="c1"># At this point, the key: &#39;feat&#39; is filled.</span>
+</pre></div>
+</div>
+</section>
+<section id="embedding">
+<h2>embedding<a class="headerlink" href="#embedding" title="Link to this heading"></a></h2>
+<p>The embedding is performed using t-SNE in the <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.embedding" title="clustaudio.clustaudio.clustaudio.embedding"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.embedding()</span></code></a> function.
+The coordinates are used for visualization purposes only. However, when setting the <code class="docutils literal notranslate"><span class="pre">cluster_space</span></code> parameter to ‘low’ in the <code class="docutils literal notranslate"><span class="pre">cluster</span></code> function, the clustering will be performed in the low-dimensional t-SNE space.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Check whether it is dir, list of files or array-like</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="c1"># Extract features using method</span>
+<span class="n">Xfeat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_feat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># Embedding using t-SNE</span>
+<span class="n">xycoord</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">Xfeat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;audio&#39;, &#39;feat&#39;, &#39;xycoord&#39;, &#39;pathnames&#39;, &#39;labels&#39;, &#39;filenames&#39;, &#39;sample_rates&#39;, &#39;durations&#39;])</span>
+<span class="c1"># At this point, the key: &#39;xycoord&#39; is filled.</span>
+</pre></div>
+</div>
+</section>
+<section id="cluster">
+<h2>cluster<a class="headerlink" href="#cluster" title="Link to this heading"></a></h2>
+<p>The <em>cluster</em> function is built on <code class="docutils literal notranslate"><span class="pre">clusteval</span></code>, which is a python package that provides various evaluation methods for unsupervised cluster validation.
+The optimal number of clusters are determined using well known methods such as <em>silhouette, dbindex, and derivatives</em> in combination with clustering methods, such as <em>agglomerative, kmeans, dbscan and hdbscan</em>.
+This function can be run after the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> function to solely optimize the clustering results or try-out different evaluation approaches without repeatedly performing all the steps of preprocessing.
+Besides changing evaluation methods and metrics, it is also possible to cluster on the low-embedded feature space. This can be done by setting the parameter <code class="docutils literal notranslate"><span class="pre">cluster_space='low'</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Check whether it is dir, list of files or array-like</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="c1"># Extract features using method</span>
+<span class="n">Xfeat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_feat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># Embedding using t-SNE</span>
+<span class="n">xycoord</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">Xfeat</span><span class="p">)</span>
+<span class="c1"># Cluster</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="s1">&#39;agglomerative&#39;</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="s1">&#39;silhouette&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">linkage</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">,</span> <span class="n">min_clust</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_clust</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">cluster_space</span><span class="o">=</span><span class="s1">&#39;high&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;audio&#39;, &#39;feat&#39;, &#39;xycoord&#39;, &#39;pathnames&#39;, &#39;labels&#39;, &#39;filenames&#39;, &#39;sample_rates&#39;, &#39;durations&#39;])</span>
+<span class="c1"># At this point, the key: &#39;labels&#39; is filled.</span>
+</pre></div>
+</div>
+<p>More examples can also be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.cluster" title="clustaudio.clustaudio.clustaudio.cluster"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.cluster()</span></code></a></p>
+</section>
+<section id="extract-voice-segments">
+<h2>extract_voice_segments<a class="headerlink" href="#extract-voice-segments" title="Link to this heading"></a></h2>
+<p>To cluster voices or speakers in audio recordings, we first need to detect and extract the voice segments from the audio files.
+The <em>extract_voice_segments</em> function does this task using Voice Activity Detection (VAD).
+Voice segments are detected using energy-based methods, librosa onset detection, or WebRTC VAD.</p>
+<dl class="simple">
+<dt>This is particularly useful for:</dt><dd><ul class="simple">
+<li><p>Podcast speaker identification</p></li>
+<li><p>ATC (Air Traffic Control) communication clustering</p></li>
+<li><p>Interview transcription and analysis</p></li>
+<li><p>Multi-speaker audio segmentation</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Extract voice segments from a podcast</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_voice_segments</span><span class="p">(</span>
+    <span class="s1">&#39;podcast.wav&#39;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;webrtcvad&#39;</span><span class="p">,</span>  <span class="c1"># or &#39;energy&#39; or &#39;librosa&#39;</span>
+    <span class="n">min_segment_duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">energy_threshold</span><span class="o">=</span><span class="mf">0.02</span>
+<span class="p">)</span>
+
+<span class="c1"># segments contains:</span>
+<span class="c1"># - pathnames_segments: List of extracted segment file paths</span>
+<span class="c1"># - timestamps: Start/end times for each segment</span>
+<span class="c1"># - durations: Duration of each segment</span>
+
+<span class="c1"># Now cluster the voice segments</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">segments</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">segments</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> voice segments&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2"> speaker clusters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.extract_voice_segments" title="clustaudio.clustaudio.clustaudio.extract_voice_segments"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.extract_voice_segments()</span></code></a></p>
+</section>
+<section id="separate-foreground-background">
+<h2>separate_foreground_background<a class="headerlink" href="#separate-foreground-background" title="Link to this heading"></a></h2>
+<p>The <em>separate_foreground_background</em> function separates audio into foreground (signal/voice) and background (noise) components.
+This is particularly useful for noisy communications like ATC (Air Traffic Control), radio transmissions, or any audio with significant background noise.</p>
+<p>Unlike VAD which only detects voice, this function extracts both the signal and noise for separate analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Separate foreground/background</span>
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span>
+    <span class="s1">&#39;noisy_communication.wav&#39;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral_masking&#39;</span><span class="p">,</span>  <span class="c1"># or &#39;harmonic_percussive&#39;, &#39;nmf&#39;, &#39;wiener&#39;</span>
+    <span class="n">denoise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">save_both</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># separated contains:</span>
+<span class="c1"># - pathnames_foreground: Clean voice/signal audio</span>
+<span class="c1"># - pathnames_background: Extracted noise audio</span>
+<span class="c1"># - snr_db: Signal-to-noise ratio improvements</span>
+
+<span class="c1"># Cluster foreground (voice)</span>
+<span class="n">voice_results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">])</span>
+
+<span class="c1"># Cluster background (noise types)</span>
+<span class="n">noise_results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_background&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Voice clusters: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">voice_results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise types: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">noise_results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average SNR improvement: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="s1">&#39;snr_db&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.separate_foreground_background" title="clustaudio.clustaudio.clustaudio.separate_foreground_background"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.separate_foreground_background()</span></code></a></p>
+</section>
+<section id="denoise">
+<h2>denoise<a class="headerlink" href="#denoise" title="Link to this heading"></a></h2>
+<p>The <em>denoise</em> function applies noise reduction to audio files using various methods.
+This is useful for cleaning up noisy recordings before clustering or analysis.</p>
+<dl class="simple">
+<dt>Available denoising methods:</dt><dd><ul class="simple">
+<li><p>‘spectral’ : Spectral subtraction (default, works well for stationary noise)</p></li>
+<li><p>‘wiener’ : Wiener filtering (adaptive noise reduction)</p></li>
+<li><p>‘noisereduce’ : Advanced noise reduction (requires noisereduce library)</p></li>
+<li><p>‘median’ : Median filtering for impulse noise</p></li>
+<li><p>‘bandpass’ : Band-pass filtering (good for speech: 300-3400 Hz)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Denoise audio files</span>
+<span class="n">denoised</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">denoise</span><span class="p">(</span>
+    <span class="n">pathnames</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span>
+    <span class="n">stationary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># For non-stationary noise</span>
+    <span class="n">save_denoised</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;denoised_audio/&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Cluster denoised audio</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">denoised</span><span class="p">[</span><span class="s1">&#39;pathnames_denoised&#39;</span><span class="p">])</span>
+
+<span class="c1"># Visualize denoising effect</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_denoise</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.denoise" title="clustaudio.clustaudio.clustaudio.denoise"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.denoise()</span></code></a></p>
+</section>
+<section id="enhance-atc-audio">
+<h2>enhance_atc_audio<a class="headerlink" href="#enhance-atc-audio" title="Link to this heading"></a></h2>
+<p>The <em>enhance_atc_audio</em> function is specialized for enhancing noisy Air Traffic Control (ATC) communication audio.
+This handles radio static, wind noise, engine noise, and low SNR conditions typical in aviation communications.</p>
+<dl class="simple">
+<dt>Enhancement levels:</dt><dd><ul class="simple">
+<li><p>‘light’ : Minimal processing (band-pass filter only)</p></li>
+<li><p>‘moderate’ : Balanced enhancement (band-pass + spectral subtraction)</p></li>
+<li><p>‘aggressive’ : Maximum enhancement (recommended for very noisy ATC)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+
+<span class="c1"># Initialize for speech (16kHz typical for radio)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Step 1: Enhance noisy ATC audio</span>
+<span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span>
+    <span class="s1">&#39;./ATC_recordings/&#39;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 2: Separate foreground/background</span>
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span>
+    <span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral_masking&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 3: Extract voice segments</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">vad</span><span class="o">.</span><span class="n">batch_extract_voice_segments</span><span class="p">(</span>
+    <span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 4: Cluster by speaker/airport/controller</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">]]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2"> ATC clusters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.enhance_atc_audio" title="clustaudio.clustaudio.clustaudio.enhance_atc_audio"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.enhance_atc_audio()</span></code></a></p>
+</section>
+<section id="find">
+<h2>find<a class="headerlink" href="#find" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">find</span></code> function <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.find" title="clustaudio.clustaudio.clustaudio.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.find()</span></code></a> allows to find audio files that are similar to the input audio.
+Finding similar audio can be performed in two manners:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Based on the k-nearest neighbour</p></li>
+<li><p>Based on significance after probability density fitting</p></li>
+</ul>
+</div></blockquote>
+<p>In both cases, the adjacency matrix is first computed using the distance metric (default Euclidean, but cosine recommended for audio features).
+In case of the k-nearest neighbour approach, the k nearest neighbours are determined.
+In case of significance, the adjacency matrix is used to estimate the best fit for the loc/scale/arg parameters across various theoretical distributions.
+The tested distributions are <em>[‘norm’, ‘expon’, ‘uniform’, ‘gamma’, ‘t’]</em>. The fitted distribution is basically the similarity-distribution of samples.
+For each new (unseen) input audio file, the probability of similarity is computed across all audio files, and the files are returned that are P &lt;= <em>alpha</em> in the lower bound of the distribution.
+If both <em>k</em> and <em>alpha</em> are specified, the union of detected samples is taken.
+Note that the metric can be changed in this function but this may lead to confusion as the results will not intuitively match with the scatter plots as these are determined using the metric in the fit_transform() function.</p>
+<p>Example to find similar audio files using audio waveform or features as input.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Init with default settings</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load example audio dataset</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cluster audio files</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Find similar audio files (k-nearest neighbor)</span>
+<span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">pathnames</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Show whatever is found</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Extract the first input audio filename</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">results_find</span><span class="o">.</span><span class="n">keys</span><span class="p">()][</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Plot the probabilities</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_find</span><span class="p">[</span><span class="n">filename</span><span class="p">][</span><span class="s1">&#39;y_proba&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;samples&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P-value&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract the cluster labels for the input audio</span>
+<span class="n">results_find</span><span class="p">[</span><span class="n">filename</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+
+<span class="c1"># The majority of labels is for a specific cluster</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">results_find</span><span class="p">[</span><span class="n">filename</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p><strong>Example to find similar audio files based on the pathname as input.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Init with default settings</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load example music collection</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cluster music files</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Find songs similar to a specific track</span>
+<span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">pathnames</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Show whatever is found</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">()</span>
+
+<span class="c1"># Get similar audio files</span>
+<span class="n">similar_songs</span> <span class="o">=</span> <span class="n">results_find</span><span class="p">[</span><span class="n">pathnames</span><span class="p">[</span><span class="mi">10</span><span class="p">]][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">similar_songs</span><span class="p">)</span><span class="si">}</span><span class="s2"> similar songs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example: Music Recommendation System</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Build music library index</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music_library/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find songs similar to user&#39;s favorite</span>
+<span class="n">favorite_song</span> <span class="o">=</span> <span class="s1">&#39;my_favorite_track.mp3&#39;</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">favorite_song</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Create recommendation playlist</span>
+<span class="n">recommendations</span> <span class="o">=</span> <span class="n">similar</span><span class="p">[</span><span class="n">favorite_song</span><span class="p">][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+
+<span class="c1"># Generate playlist</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">create_playlist</span><span class="p">(</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">similar</span><span class="p">[</span><span class="n">favorite_song</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span>
+    <span class="n">playlist_name</span><span class="o">=</span><span class="s1">&#39;recommendations&#39;</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;m3u8&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.find" title="clustaudio.clustaudio.clustaudio.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.find()</span></code></a></p>
+</section>
+<section id="unique">
+<h2>unique<a class="headerlink" href="#unique" title="Link to this heading"></a></h2>
+<p>The unique audio samples can be computed using the unique <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.unique" title="clustaudio.clustaudio.clustaudio.unique"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.unique()</span></code></a> and are detected by first computing the center of the cluster, and then taking the audio file closest to the center.
+Let’s demonstrate this by example with a music dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Init with default settings</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load example music collection</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find natural groups of audio files</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Show the unique detected audio samples</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results_unique</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Plot the audio file that is located in the center of each cluster</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_unique</span><span class="p">(</span><span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Compute again with other metric if desired</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="preprocessing">
+<h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading"></a></h1>
+<p>Audio preprocessing is performed in the <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.audioread" title="clustaudio.clustaudio.clustaudio.audioread"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.audioread()</span></code></a> function and contains several functions to handle the import and preprocessing of audio files.
+This function requires the full path to the audio file for which the first step is reading the audio and performing sample rate conversion.</p>
+<p>The pre-processing has 5 steps and are executed in this order:</p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Import audio file</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Resample to target sample rate (user defined, e.g., sr=22050)</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Convert to mono (user defined, default=True)</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Normalize amplitude to [-1, 1] range (user defined, default=True)</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>Trim silence (optional)</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">librosa.display</span>
+
+<span class="c1"># Init</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Load example dataset</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Preprocessing of the first audio file</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">audioread</span><span class="p">(</span><span class="n">pathnames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Plot waveform</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">cl</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;sr&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Preprocessed Audio Waveform&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h1>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h1>
+<p>The results obtained from the <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.fit_transform" title="clustaudio.clustaudio.clustaudio.fit_transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.fit_transform()</span></code></a> or <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.cluster" title="clustaudio.clustaudio.clustaudio.cluster"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.cluster()</span></code></a> is a dictionary containing the following keys:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*<span class="w">  </span>audio<span class="w">         </span>:<span class="w"> </span>Audio<span class="w"> </span>waveforms<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>preprocessed<span class="w"> </span>audio<span class="w"> </span>files
+*<span class="w">  </span>feat<span class="w">          </span>:<span class="w"> </span>Extracted<span class="w"> </span>features
+*<span class="w">  </span>xycoord<span class="w">       </span>:<span class="w"> </span>X<span class="w"> </span>and<span class="w"> </span>Y<span class="w"> </span>coordinates<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>embedding
+*<span class="w">  </span>pathnames<span class="w">     </span>:<span class="w"> </span>Absolute<span class="w"> </span>path<span class="w"> </span>location<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>audio<span class="w"> </span>file
+*<span class="w">  </span>filenames<span class="w">     </span>:<span class="w"> </span>File<span class="w"> </span>names<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>audio<span class="w"> </span>file
+*<span class="w">  </span>labels<span class="w">        </span>:<span class="w"> </span>Cluster<span class="w"> </span>labels
+*<span class="w">  </span>sample_rates<span class="w">  </span>:<span class="w"> </span>Sample<span class="w"> </span>rates<span class="w"> </span>of<span class="w"> </span>audio<span class="w"> </span>files
+*<span class="w">  </span>durations<span class="w">     </span>:<span class="w"> </span>Duration<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>audio<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>
+</pre></div>
+</div>
+<p>For demonstration purposes I will load a music dataset and cluster the audio files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Cluster audio files</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All results are stored in a dict:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># Which is the same as:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;audio&#39;, &#39;feat&#39;, &#39;xycoord&#39;, &#39;pathnames&#39;, &#39;labels&#39;, &#39;filenames&#39;, &#39;sample_rates&#39;, &#39;durations&#39;])</span>
+</pre></div>
+</div>
+<p>Extract audio files that belong to a certain cluster and make some plots.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extracting audio files that belong to cluster label=0:</span>
+<span class="n">label</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Iloc</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">label</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;pathnames&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+
+<span class="c1"># Extracting xy-coordinates for the scatterplot for cluster 0:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">xycoord</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;xycoord&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xycoord</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">xycoord</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cluster </span><span class="si">%.0d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">label</span><span class="p">)</span>
+
+<span class="c1"># Get audio for cluster 0:</span>
+<span class="n">audio_files</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+
+<span class="c1"># Plot waveforms for cluster 0:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">librosa.display</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">pathname</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">audio_files</span><span class="p">,</span> <span class="n">pathnames</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># Limit to first 3 for demonstration</span>
+        <span class="k">break</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">cl</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;sr&#39;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">pathname</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="generic-functions">
+<h1>Generic functions<a class="headerlink" href="#generic-functions" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> contains various generic functionalities that are internally used but may be useful too in other applications.</p>
+<section id="wget">
+<h2>wget<a class="headerlink" href="#wget" title="Link to this heading"></a></h2>
+<p>Download files from the internet and store on disk.
+Examples can be found here: <code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.wget()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="c1"># Download</span>
+<span class="n">audio_files</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">wget</span><span class="p">(</span><span class="s1">&#39;https://example.com/audio_dataset.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;c://temp//audio_dataset.zip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unzip">
+<h2>unzip<a class="headerlink" href="#unzip" title="Link to this heading"></a></h2>
+<p>Unzip files into a destination directory.
+Examples can be found here: <code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.unzip()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="c1"># Unzip to path</span>
+<span class="n">dirpath</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">unzip</span><span class="p">(</span><span class="s1">&#39;c://temp//audio_dataset.zip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="listdir">
+<h2>listdir<a class="headerlink" href="#listdir" title="Link to this heading"></a></h2>
+<p>Recursively list the audio files in the directory.
+Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.listdir" title="clustaudio.clustaudio.listdir"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.listdir()</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">listdir</span>
+<span class="c1"># List audio files in directory</span>
+<span class="n">dirpath</span> <span class="o">=</span> <span class="s1">&#39;c://temp//audio_dataset&#39;</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;wav&#39;</span><span class="p">,</span> <span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="set-logger">
+<h2>set_logger<a class="headerlink" href="#set-logger" title="Link to this heading"></a></h2>
+<p>Change status of the logger.
+Examples can be found here: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.set_logger" title="clustaudio.clustaudio.set_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.set_logger()</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change to verbosity message of warnings and higher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_logger</span>
+<span class="n">set_logger</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="extract-mfcc">
+<h2>extract_mfcc<a class="headerlink" href="#extract-mfcc" title="Link to this heading"></a></h2>
+<p>Mel-Frequency Cepstral Coefficients (MFCC) are the primary audio features used for clustering.
+Examples: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.extract_mfcc" title="clustaudio.clustaudio.clustaudio.extract_mfcc"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.extract_mfcc()</span></code></a> More detailed explanation can be found in the <strong>Feature Extraction</strong> - <strong>MFCC</strong> section.</p>
+</section>
+<section id="extract-spectral">
+<h2>extract_spectral<a class="headerlink" href="#extract-spectral" title="Link to this heading"></a></h2>
+<p>Spectral features capture timbral characteristics of audio.
+Examples: <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.extract_spectral" title="clustaudio.clustaudio.clustaudio.extract_spectral"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.extract_spectral()</span></code></a> More detailed explanation can be found in the <strong>Feature Extraction</strong> - <strong>Spectral Features</strong> section.</p>
+</section>
+</section>
+<section id="merge-expand-clusters">
+<h1>Merge/ Expand Clusters<a class="headerlink" href="#merge-expand-clusters" title="Link to this heading"></a></h1>
+<p>The number of clusters are optimized using the clusteval library. However, when desired it is also possible to manually merge or expand the number of clusters.</p>
+<section id="optimized-clusters">
+<h2>Optimized Clusters<a class="headerlink" href="#optimized-clusters" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Import data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+<span class="c1"># Fit transform</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="c1"># Check number of clusters</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span>
+<span class="c1"># 9</span>
+
+<span class="c1"># Scatter</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="c1"># Create dendrogram</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="force-to-k-clusters">
+<h2>Force to K clusters<a class="headerlink" href="#force-to-k-clusters" title="Link to this heading"></a></h2>
+<p>Let’s merge some of the clusters and set it to 5 clusters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set to 5 clusters</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">min_clust</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_clust</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Check number of clusters</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span>
+<span class="c1"># 5</span>
+
+<span class="c1"># Scatter</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="c1"># Create dendrogram</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="set-clusters-by-dendrogram-threshold">
+<h2>Set clusters by dendrogram threshold<a class="headerlink" href="#set-clusters-by-dendrogram-threshold" title="Link to this heading"></a></h2>
+<p>Another manner to change the number of clusters is by specifying the height of the dendrogram (setting a threshold point or cut-off). The number of clusters is automatically derived from that point.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Look at the dendrogram y-axis and specify the height to merge clusters</span>
+<span class="n">dendro_results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">max_d</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+
+<span class="c1"># Check number of clusters</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span>
+<span class="c1"># 3</span>
+
+<span class="c1"># Scatter</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-on-the-cluster-labels">
+<h2>Selection on the cluster labels<a class="headerlink" href="#selection-on-the-cluster-labels" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All results are stored in cl.results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;feat&#39;</span><span class="p">,</span> <span class="s1">&#39;xycoord&#39;</span><span class="p">,</span> <span class="s1">&#39;pathnames&#39;</span><span class="p">,</span> <span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;filenames&#39;</span><span class="p">,</span> <span class="s1">&#39;sample_rates&#39;</span><span class="p">,</span> <span class="s1">&#39;durations&#39;</span><span class="p">,</span> <span class="s1">&#39;predict&#39;</span><span class="p">]</span>
+
+<span class="c1"># The cluster labels are stored in labels</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+
+<span class="c1"># Select cluster 0</span>
+<span class="n">Iloc</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span>
+
+<span class="c1"># Select files for cluster 0</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;pathnames&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+
+<span class="c1"># Select filenames for cluster 0</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;filenames&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+
+<span class="c1"># Select xy-coordinates for cluster 0</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;xycoord&#39;</span><span class="p">][</span><span class="n">Iloc</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="move-files-based-on-cluster-labels">
+<h1>Move files based on cluster labels<a class="headerlink" href="#move-files-based-on-cluster-labels" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">move_to_dir</span></code> function physically moves or copies audio files into subdirectories based on cluster labels.
+First perform the desired clustering approach and with the following steps it allows you to organize the audio files by physically moving them into subdirectories.</p>
+<p>Additionally, playlists can be automatically generated for each cluster.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the cluster labels</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">])</span>
+
+<span class="c1"># Step 1. Use the plot function to determine what each cluster represents.</span>
+<span class="c1"># Do not plot cluster 0 (rest group), and only plot when a cluster contains 3 or more audio files.</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">blacklist</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Step 2. Create a dict that specifies the cluster number with its folder names.</span>
+<span class="c1"># The first column is the cluster label and the second string is the destination subfolder name.</span>
+<span class="c1"># Look at the clusters and specify the subdirectories. For example:</span>
+<span class="c1"># cluster 0 might be rock music, cluster 1 might be jazz, cluster 2 might be classical</span>
+<span class="c1"># All audio files that are not in the specified clusters will remain untouched.</span>
+<span class="n">target_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;rock&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;jazz&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;classical&#39;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;electronic&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Step 3. Move/copy the audio files to the specified directories using the cluster labels.</span>
+<span class="c1"># Also create playlists for each cluster</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span>
+    <span class="n">target_labels</span><span class="o">=</span><span class="n">target_labels</span><span class="p">,</span>
+    <span class="n">action</span><span class="o">=</span><span class="s1">&#39;copy&#39;</span><span class="p">,</span>  <span class="c1"># or &#39;move&#39;</span>
+    <span class="n">create_playlists</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example: Organize ATC Communications</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Process ATC recordings</span>
+<span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span><span class="s1">&#39;./ATC/&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span><span class="p">)</span>
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span><span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">])</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">vad</span><span class="o">.</span><span class="n">batch_extract_voice_segments</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">])</span>
+
+<span class="c1"># Cluster voice segments</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">]]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Organize by identified clusters (controllers, airports, etc.)</span>
+<span class="n">target_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;tower_controllers&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;pilot_transmissions&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;ground_control&#39;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;approach_control&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span><span class="n">target_labels</span><span class="o">=</span><span class="n">target_labels</span><span class="p">,</span> <span class="n">create_playlists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plotting">
+<h1>Plotting<a class="headerlink" href="#plotting" title="Link to this heading"></a></h1>
+<p>clustaudio has various plotting functionalities designed for audio visualization and analysis:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>plot</strong>: Plots waveforms and/or spectrograms of audio files in clusters</p></li>
+<li><p><strong>plot_find</strong>: Plot the input audio together with the predicted similar audio files</p></li>
+<li><p><strong>plot_unique</strong>: Plot the unique/representative audio samples from each cluster</p></li>
+<li><p><strong>dendrogram</strong>: Plot hierarchical clustering dendrogram</p></li>
+<li><p><strong>scatter</strong>: Scatter plot of embedded features with cluster colors</p></li>
+<li><p><strong>plot_separation</strong>: Visualize foreground/background separation results</p></li>
+<li><p><strong>plot_denoise</strong>: Compare original and denoised audio</p></li>
+<li><p><strong>plot_statistics</strong>: Comprehensive cluster statistics and distributions</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Example: Comprehensive Audio Visualization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize and cluster</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot waveforms for clusters</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_spectrogram</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dotsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Dendrogram</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">()</span>
+
+<span class="c1"># Cluster statistics</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_statistics</span><span class="p">()</span>
+
+<span class="c1"># Find similar audio and visualize</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query_song.mp3&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+</pre></div>
+</div>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Feature_Extraction.html" class="btn btn-neutral float-right" title="MFCC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

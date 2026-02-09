@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Core functionalities" href="core_functions.html" />
+    <link rel="prev" title="Abstract" href="Abstract.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pypi">Pypi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-source">Github source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-installation">Complete Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-audio-formats">Supported Audio Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html">Core functionalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#generic-functions">Generic functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#merge-expand-clusters">Merge/ Expand Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Find.html">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Performance.html">Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clustaudio.clustaudio.html">API References</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="pypi">
+<h2>Pypi<a class="headerlink" href="#pypi" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install clustaudio</span>
+</pre></div>
+</div>
+</section>
+<section id="github-source">
+<h2>Github source<a class="headerlink" href="#github-source" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/erdogant/clustaudio.git</span>
+<span class="go">cd clustaudio</span>
+<span class="go">pip install -U .</span>
+</pre></div>
+</div>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> requires the following core dependencies:</p>
+<p><strong>Audio Processing (Required)</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install librosa soundfile</span>
+</pre></div>
+</div>
+<p><strong>Core Dependencies (Required)</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install numpy pandas scikit-learn scipy matplotlib tqdm</span>
+</pre></div>
+</div>
+<p><strong>Original Library Dependencies (Required)</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install pca distfit clusteval scatterd colourmap datazets pypickle ismember</span>
+</pre></div>
+</div>
+<p><strong>Phase 2 Dependencies (Optional but Recommended)</strong></p>
+<p>For enhanced metadata extraction:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install mutagen tinytag</span>
+</pre></div>
+</div>
+<p>For advanced Voice Activity Detection:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install webrtcvad</span>
+</pre></div>
+</div>
+<p>For audio fingerprinting:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install pyacoustid</span>
+</pre></div>
+</div>
+<p>For metadata extraction (alternative):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install eyed3</span>
+</pre></div>
+</div>
+<p><strong>Phase 3 Dependencies (Optional)</strong></p>
+<p>For advanced noise reduction:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install noisereduce</span>
+</pre></div>
+</div>
+<p>For format conversion:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install pydub</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-installation">
+<h2>Complete Installation<a class="headerlink" href="#complete-installation" title="Link to this heading"></a></h2>
+<p>To install all dependencies at once:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Core<span class="w"> </span>only
+<span class="go">pip install clustaudio</span>
+
+<span class="gp"># </span>With<span class="w"> </span>recommended<span class="w"> </span>optional<span class="w"> </span>packages
+<span class="go">pip install clustaudio mutagen tinytag webrtcvad noisereduce</span>
+</pre></div>
+</div>
+</section>
+<section id="supported-audio-formats">
+<h2>Supported Audio Formats<a class="headerlink" href="#supported-audio-formats" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> supports the following audio formats:</p>
+<ul class="simple">
+<li><p><strong>WAV</strong> (.wav) - Uncompressed, lossless</p></li>
+<li><p><strong>MP3</strong> (.mp3) - Compressed, lossy</p></li>
+<li><p><strong>FLAC</strong> (.flac) - Compressed, lossless</p></li>
+<li><p><strong>OGG</strong> (.ogg) - Compressed, lossy</p></li>
+<li><p><strong>M4A</strong> (.m4a) - Compressed (AAC), lossy</p></li>
+<li><p><strong>AAC</strong> (.aac) - Compressed, lossy</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For best performance and compatibility, WAV and FLAC formats are recommended.
+MP3 and other compressed formats may have slight quality degradation.</p>
+</div>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<p><strong>Minimum Requirements:</strong></p>
+<ul class="simple">
+<li><p>Python 3.7 or higher</p></li>
+<li><p>4 GB RAM</p></li>
+<li><p>500 MB disk space</p></li>
+</ul>
+<p><strong>Recommended Requirements:</strong></p>
+<ul class="simple">
+<li><p>Python 3.9 or higher</p></li>
+<li><p>8 GB RAM or more</p></li>
+<li><p>2 GB disk space for caching</p></li>
+<li><p>Multi-core CPU (for faster processing)</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>librosa installation issues:</strong></p>
+<p>On some systems, you may need to install additional audio codecs:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Ubuntu/Debian
+<span class="go">sudo apt-get install libsndfile1</span>
+
+<span class="gp"># </span>macOS<span class="w"> </span><span class="o">(</span>using<span class="w"> </span>Homebrew<span class="o">)</span>
+<span class="go">brew install libsndfile</span>
+
+<span class="gp"># </span>Windows
+<span class="gp"># </span>Usually<span class="w"> </span>works<span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>box<span class="w"> </span>with<span class="w"> </span>pip<span class="w"> </span>install
+</pre></div>
+</div>
+<p><strong>soundfile issues:</strong></p>
+<p>If soundfile fails to load audio:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install soundfile --upgrade</span>
+</pre></div>
+</div>
+<p><strong>webrtcvad compilation issues:</strong></p>
+<p>If webrtcvad fails to install:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Try<span class="w"> </span>installing<span class="w"> </span>build<span class="w"> </span>tools<span class="w"> </span>first
+<span class="gp"># </span>Ubuntu/Debian
+<span class="go">sudo apt-get install build-essential python3-dev</span>
+
+<span class="gp"># </span>macOS
+<span class="go">xcode-select --install</span>
+</pre></div>
+</div>
+<p><strong>noisereduce installation:</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install noisereduce==2.0.0</span>
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<p>To verify your installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">clustaudio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clustaudio</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="c1"># Check if audio can be loaded</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="o">.</span><span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Installation successful!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To check optional dependencies:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check librosa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;librosa version: </span><span class="si">{</span><span class="n">librosa</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check if advanced features are available</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">webrtcvad</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WebRTC VAD available: Yes&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WebRTC VAD available: No&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">noisereduce</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Noisereduce available: Yes&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Noisereduce available: No&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">mutagen</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mutagen (metadata) available: Yes&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mutagen (metadata) available: No&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>After installation, see the Examples section for usage tutorials, or try the quick start:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Cluster audio files</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/path/to/audio/files/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more examples, see: <a class="reference internal" href="Examples.html#examples"><span class="std std-ref">Examples</span></a></p>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Abstract.html" class="btn btn-neutral float-left" title="Abstract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_functions.html" class="btn btn-neutral float-right" title="Core functionalities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

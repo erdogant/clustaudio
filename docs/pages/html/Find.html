@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>k-nearest neighbour &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Performance" href="Performance.html" />
+    <link rel="prev" title="Gridsearch" href="Cluster_Evaluation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html">Core functionalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#generic-functions">Generic functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#merge-expand-clusters">Merge/ Expand Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature_Extraction.html#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Performance.html">Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clustaudio.clustaudio.html">API References</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">k-nearest neighbour</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Find.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>This section describes how to find similar audio files using a readily fitted model.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">find</span></code> function <a class="reference internal" href="clustaudio.clustaudio.html#clustaudio.clustaudio.clustaudio.find" title="clustaudio.clustaudio.clustaudio.find"><code class="xref py py-func docutils literal notranslate"><span class="pre">clustaudio.clustaudio.clustaudio.find()</span></code></a> allows finding audio files that are similar to what has already been seen by the model. Finding similar audio can be performed in two manners as described below. In both cases, the adjacency matrix is first computed using the distance metric (default: cosine for audio features).</p>
+<section id="k-nearest-neighbour">
+<h1>k-nearest neighbour<a class="headerlink" href="#k-nearest-neighbour" title="Link to this heading"></a></h1>
+<p>The k-nearest neighbour approach searches the k nearest neighbours to that of the input audio file using the specified distance metric (default: cosine for MFCC/spectral features). This approach returns distances to the closest neighbors. If both <em>k</em> and <em>alpha</em> are specified, the union of detected samples is taken.</p>
+<p>Example to find similar audio samples for unseen files using k-nearest neighbour approach.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Init with MFCC features</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load music library</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Build the audio database</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Results are also stored in object results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Scatter results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dotsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Find similar audio files for a query song</span>
+<span class="n">query_audio</span> <span class="o">=</span> <span class="s1">&#39;path/to/my_favorite_song.mp3&#39;</span>
+<span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">query_audio</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Make scatter showing the query and similar files</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dotsize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="c1"># Print results for first query</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1"># [&#39;y_idx&#39;, &#39;distance&#39;, &#39;y_proba&#39;, &#39;labels&#39;, &#39;y_filenames&#39;, &#39;y_pathnames&#39;, &#39;x_pathnames&#39;]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])[[</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">,</span><span class="s1">&#39;y_proba&#39;</span><span class="p">]])</span>
+<span class="c1">#    labels    distance  y_proba</span>
+<span class="c1"># 0       3     0.124536      NaN</span>
+<span class="c1"># 1       3     0.185432      NaN</span>
+<span class="c1"># 2       3     0.203891      NaN</span>
+<span class="c1"># 3       3     0.231056      NaN</span>
+<span class="c1"># 4       5     0.267834      NaN</span>
+<span class="c1"># 5       3     0.289421      NaN</span>
+<span class="c1"># 6       5     0.302187      NaN</span>
+<span class="c1"># 7       3     0.318942      NaN</span>
+<span class="c1"># 8       5     0.334502      NaN</span>
+<span class="c1"># 9       3     0.351234      NaN</span>
+
+<span class="c1"># Get most common cluster label</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">uiy</span><span class="p">,</span> <span class="n">ycounts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y_predict</span> <span class="o">=</span> <span class="n">uiy</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ycounts</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Most similar cluster: </span><span class="si">{</span><span class="n">y_predict</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get the actual filenames of similar audio</span>
+<span class="n">similar_files</span> <span class="o">=</span> <span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="s1">&#39;y_filenames&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 similar audio files:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">filename</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">similar_files</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> (distance: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Music recommendation example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Build music library index</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/my_music_library/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find songs similar to favorites</span>
+<span class="n">favorite_song</span> <span class="o">=</span> <span class="s1">&#39;/my_music_library/favorite_track.mp3&#39;</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">favorite_song</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Create discovery playlist</span>
+<span class="n">similar_paths</span> <span class="o">=</span> <span class="n">similar</span><span class="p">[</span><span class="n">favorite_song</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Songs similar to &#39;</span><span class="si">{</span><span class="n">favorite_song</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">similar_paths</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="probability-density-fitting">
+<h1>Probability density fitting<a class="headerlink" href="#probability-density-fitting" title="Link to this heading"></a></h1>
+<p>The probability density fitting method fits a model on the input features to determine the loc/scale/arg parameters across various theoretical distributions. For audio features (MFCC, spectral, etc.), these are the feature vectors. The tested distributions are <em>[‘norm’, ‘expon’, ‘uniform’, ‘gamma’, ‘t’]</em>. The fitted distribution represents the similarity-distribution of audio samples.</p>
+<p>For each new (unseen) input audio file, the probability of similarity is computed across all audio files in the database, and files with P &lt;= <em>alpha</em> (lower bound) are returned. This approach identifies statistically significant matches rather than just the closest neighbors.</p>
+<p>Note that the metric can be changed in this function but this may lead to confusion as the results will not intuitively match with the scatter plots, which are determined using the metric in the fit_transform() function.</p>
+<p>Example to find similar audio samples using probability density fitting.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Init with MFCC features</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load audio dataset</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Build audio database</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Results are stored in object results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Scatter results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dotsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Find statistically similar audio files (alpha=0.05 means 5% significance)</span>
+<span class="n">query_audio</span> <span class="o">=</span> <span class="s1">&#39;query_track.mp3&#39;</span>
+<span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">query_audio</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Make scatter</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dotsize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="c1"># Print first key</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1"># [&#39;y_idx&#39;, &#39;distance&#39;, &#39;y_proba&#39;, &#39;labels&#39;, &#39;y_filenames&#39;, &#39;y_pathnames&#39;, &#39;x_pathnames&#39;]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">])[[</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">,</span><span class="s1">&#39;y_proba&#39;</span><span class="p">]])</span>
+
+<span class="c1">#     labels    distance   y_proba</span>
+<span class="c1"># 0        2     0.142156  0.000035</span>
+<span class="c1"># 1        2     0.215290  0.000822</span>
+<span class="c1"># 2        2     0.268588  0.001812</span>
+<span class="c1"># 3        2     0.291933  0.001956</span>
+<span class="c1"># 4        2     0.321231  0.002412</span>
+<span class="c1"># ..     ...         ...       ...</span>
+<span class="c1"># 42       2     0.806617  0.044141</span>
+<span class="c1"># 43       2     0.817522  0.044750</span>
+<span class="c1"># 44       2     0.828852  0.045657</span>
+<span class="c1"># 45       2     0.839517  0.046116</span>
+<span class="c1"># 46       2     0.851862  0.047765</span>
+
+<span class="c1"># Get most common cluster label</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">uiy</span><span class="p">,</span> <span class="n">ycounts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="s1">&#39;labels&#39;</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y_predict</span> <span class="o">=</span> <span class="n">uiy</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ycounts</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Most similar cluster: </span><span class="si">{</span><span class="n">y_predict</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of statistically similar files: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Combining k-NN and probability:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/audio_library/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find both top-10 nearest AND statistically significant (union)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;query_audio.wav&#39;</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># This returns the union of:</span>
+<span class="c1"># - Top 10 nearest neighbors</span>
+<span class="c1"># - All files with p-value &lt;= 0.05</span>
+
+<span class="n">result_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">similar</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n_similar</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">similar</span><span class="p">[</span><span class="n">result_key</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">n_similar</span><span class="si">}</span><span class="s2"> similar audio files&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="more-examples">
+<h1>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h1>
+<p><strong>Find similar music tracks:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Init with combined features for best music analysis</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Load music library</span>
+<span class="n">music_files</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">,</span> <span class="s1">&#39;wav&#39;</span><span class="p">])</span>
+
+<span class="c1"># Cluster music tracks</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">music_files</span><span class="p">)</span>
+
+<span class="c1"># Query: Find songs similar to a specific track</span>
+<span class="n">query_track</span> <span class="o">=</span> <span class="n">music_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Find similar tracks</span>
+<span class="n">results_find</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">query_track</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Visualize results</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zoom</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Extract results for the query</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">results_find</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot the probability distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_find</span><span class="p">[</span><span class="n">filename</span><span class="p">][</span><span class="s1">&#39;y_proba&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P-value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Similarity probability for </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;alpha=0.05&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Extract cluster labels for similar files</span>
+<span class="n">similar_labels</span> <span class="o">=</span> <span class="n">results_find</span><span class="p">[</span><span class="n">filename</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+
+<span class="c1"># The majority label indicates the genre/mood cluster</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">similar_labels</span><span class="p">))</span>
+<span class="c1"># Example output:</span>
+<span class="c1"># 3    42</span>
+<span class="c1"># 5     8</span>
+<span class="c1"># 2     3</span>
+<span class="c1"># Name: labels, dtype: int64</span>
+<span class="c1"># This means cluster 3 is dominant (likely same genre/mood)</span>
+</pre></div>
+</div>
+<p><strong>Speaker identification in podcast:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+
+<span class="c1"># Initialize for speech</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Extract voice segments from podcast</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_voice_segments</span><span class="p">(</span>
+    <span class="s1">&#39;podcast_episode.wav&#39;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;webrtcvad&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Cluster speakers</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">segments</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">])</span>
+
+<span class="c1"># Find all segments similar to a known speaker</span>
+<span class="n">known_speaker_segment</span> <span class="o">=</span> <span class="n">segments</span><span class="p">[</span><span class="s1">&#39;pathnames_segments&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">similar_segments</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">known_speaker_segment</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># Get all segments from the same speaker</span>
+<span class="n">speaker_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">similar_segments</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">speaker_files</span> <span class="o">=</span> <span class="n">similar_segments</span><span class="p">[</span><span class="n">speaker_key</span><span class="p">][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">speaker_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> segments from the same speaker&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create playlist of this speaker&#39;s segments</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_playlist</span>
+<span class="n">playlist_path</span> <span class="o">=</span> <span class="s1">&#39;/speaker_segments.m3u8&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">playlist_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#EXTM3U</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">speaker_files</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Environmental sound classification:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize with spectral features (good for environmental sounds)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load environmental recordings</span>
+<span class="n">env_sounds</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/environmental_audio/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;wav&#39;</span><span class="p">])</span>
+
+<span class="c1"># Cluster sounds</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">env_sounds</span><span class="p">)</span>
+
+<span class="c1"># Find sounds similar to a bird chirp</span>
+<span class="n">bird_sound</span> <span class="o">=</span> <span class="s1">&#39;/environmental_audio/bird_chirp_sample.wav&#39;</span>
+<span class="n">similar_sounds</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">bird_sound</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Analyze results</span>
+<span class="n">bird_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">similar_sounds</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">similar_sounds</span><span class="p">[</span><span class="n">bird_key</span><span class="p">])</span><span class="si">}</span><span class="s2"> similar sounds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Cluster distribution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">similar_sounds</span><span class="p">[</span><span class="n">bird_key</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Get file paths</span>
+<span class="n">similar_files</span> <span class="o">=</span> <span class="n">similar_sounds</span><span class="p">[</span><span class="n">bird_key</span><span class="p">][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">similar_files</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">similar_sounds</span><span class="p">[</span><span class="n">bird_key</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="si">}</span><span class="s2"> (distance: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Duplicate and near-duplicate detection:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># For exact duplicates, use fingerprinting</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">])</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">batch_compute_fingerprints</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">find_duplicates</span><span class="p">(</span><span class="n">fps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2"> groups of duplicates&quot;</span><span class="p">)</span>
+
+<span class="c1"># For near-duplicates (covers, remixes), use find()</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Find covers/remixes of a song</span>
+<span class="n">original</span> <span class="o">=</span> <span class="s1">&#39;/music/original_song.mp3&#39;</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Filter by distance threshold for near-duplicates</span>
+<span class="n">result_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">similar</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">near_duplicates</span> <span class="o">=</span> <span class="n">similar</span><span class="p">[</span><span class="n">result_key</span><span class="p">][</span><span class="n">similar</span><span class="p">[</span><span class="n">result_key</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">near_duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2"> near-duplicates (possible covers/remixes)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">near_duplicates</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;y_filenames&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (distance: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="atc-speaker-clustering-example">
+<h1>ATC Speaker Clustering Example<a class="headerlink" href="#atc-speaker-clustering-example" title="Link to this heading"></a></h1>
+<p>Here’s a complete example for identifying controllers/pilots in Air Traffic Control communications:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span><span class="p">,</span> <span class="n">listdir</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Initialize for radio speech</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Get ATC recordings</span>
+<span class="n">atc_files</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/ATC_recordings/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;wav&#39;</span><span class="p">])</span>
+
+<span class="c1"># Enhance noisy audio</span>
+<span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span><span class="n">atc_files</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span><span class="p">)</span>
+
+<span class="c1"># Separate voice from noise</span>
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span>
+    <span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral_masking&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract voice segments</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">vad</span><span class="o">.</span><span class="n">batch_extract_voice_segments</span><span class="p">(</span>
+    <span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Collect segments</span>
+<span class="n">voice_segments</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">p</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span>
+    <span class="k">if</span> <span class="n">seg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pathnames_segments&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">[</span><span class="s2">&quot;pathnames_segments&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Cluster speakers</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">voice_segments</span><span class="p">)</span>
+
+<span class="c1"># Identify segments from a known controller</span>
+<span class="n">known_controller</span> <span class="o">=</span> <span class="n">voice_segments</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span>  <span class="c1"># Example known segment</span>
+
+<span class="c1"># Find all segments from the same speaker</span>
+<span class="n">same_speaker</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="n">known_controller</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># No k limit</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span>        <span class="c1"># Strict similarity</span>
+<span class="p">)</span>
+
+<span class="c1"># Analyze results</span>
+<span class="n">speaker_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">same_speaker</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">n_segments</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">same_speaker</span><span class="p">[</span><span class="n">speaker_key</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">n_segments</span><span class="si">}</span><span class="s2"> segments from the same speaker&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster: </span><span class="si">{</span><span class="n">same_speaker</span><span class="p">[</span><span class="n">speaker_key</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create timeline of this speaker&#39;s transmissions</span>
+<span class="n">speaker_files</span> <span class="o">=</span> <span class="n">same_speaker</span><span class="p">[</span><span class="n">speaker_key</span><span class="p">][</span><span class="s1">&#39;y_pathnames&#39;</span><span class="p">]</span>
+<span class="n">timestamps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">speaker_files</span><span class="p">:</span>
+    <span class="c1"># Extract timestamp from filename or file metadata</span>
+    <span class="c1"># timestamps.append(extract_timestamp(filepath))</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Generate speaker transcript file list</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;controller_timeline.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">speaker_files</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="distance-metrics">
+<h1>Distance Metrics<a class="headerlink" href="#distance-metrics" title="Link to this heading"></a></h1>
+<p>Different distance metrics can be used for finding similar audio:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cosine similarity (recommended for MFCC/spectral)</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query.wav&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
+
+<span class="c1"># Euclidean distance</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query.wav&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Manhattan distance</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query.wav&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;manhattan&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Metric recommendations:</strong></dt><dd><ul class="simple">
+<li><p><strong>Cosine</strong>: Best for MFCC and spectral features (default)</p></li>
+<li><p><strong>Euclidean</strong>: General purpose</p></li>
+<li><p><strong>Manhattan</strong>: Robust to outliers</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="plot-find-results">
+<h1>Plot Find Results<a class="headerlink" href="#plot-find-results" title="Link to this heading"></a></h1>
+<p>Visualize the found similar audio files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/audio/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Find similar</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;query.mp3&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Plot with annotations</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot_find</span><span class="p">()</span>
+
+<span class="c1"># Or plot specific clusters/waveforms</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">show_waveform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Cluster_Evaluation.html" class="btn btn-neutral float-left" title="Gridsearch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Performance.html" class="btn btn-neutral float-right" title="Performance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

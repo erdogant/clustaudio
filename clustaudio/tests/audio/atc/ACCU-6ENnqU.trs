@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-6ENnqU.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="18.42">
+<Turn startTime="0" endTime="18.42">
+<Sync time="0.000"/>
+..
+<Sync time="1.080"/>
+[air]Praha Radar good day Wizzair 4 Y V flight level 2 8 0 over ASTEL request flight level 3 6 0 for
+<Sync time="8.070"/>
+..
+<Sync time="9.020"/>
+[ground]Wizzair 4 Y V [czech_|]dobrý den[|_czech] Praha radar contact climb flight level 3 3 0
+<Sync time="13.310"/>
+..
+<Sync time="13.760"/>
+[air]climbing flight level 3 3 0 Wizzair 4 Y V
+<Sync time="16.770"/>
+..
+<Sync time="18.420"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

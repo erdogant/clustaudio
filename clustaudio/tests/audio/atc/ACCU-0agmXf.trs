@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-0agmXf.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="61.47">
+<Turn startTime="0" endTime="61.47">
+<Sync time="0.000"/>
+[ground]Skyshuttle 1 1 4 0 now descend FL 3 3 0[speaker]
+<Sync time="3.950"/>
+..
+<Sync time="4.790"/>
+[air]descending FL 3
+<Sync time="6.300"/>
+..
+<Sync time="6.650"/>
+[air]K O Z
+<Sync time="7.380"/>
+..
+<Sync time="9.640"/>
+[ground_|]Austrian 3 2 3 G climb FL 3 4 0 [|_ground][air_|]level 3 4 0 Austrian 3 2 3 G[|_air]
+<Sync time="15.540"/>
+..
+<Sync time="17.310"/>
+[ground]Skyshuttle 1 1 4 0 contact (Vienna(vín)) 1 3 4  4 4 0 bye bye[speaker]
+<Sync time="22.240"/>
+..
+<Sync time="26.000"/>
+[air]1 3 4 4 4 0 Skyshuttle 1 1 4 0 bye
+<Sync time="30.060"/>
+..
+<Sync time="31.720"/>
+[air]Praha radar[czech_|] dobrý den[|_czech] [unintelligible] 9 0 W level t+
+<Sync time="34.490"/>
+..
+<Sync time="35.440"/>
+[ground]Adriana 9 3 W hello radar contact proceed to MIKOV squawk 1 4 6 0 bye bye sorry[noise]
+<Sync time="41.910"/>
+..
+<Sync time="51.670"/>
+[ground]Lufthansa 2 5 5 0 squawk 1 4 5 2
+<Sync time="55.270"/>
+..
+<Sync time="56.020"/>
+[air]squawking 1 4 fi+
+<Sync time="57.440"/>
+..
+<Sync time="57.670"/>
+[air]2 Lufthansa 5 [speaker] 2 5 5 0
+<Sync time="60.580"/>
+..
+<Sync time="61.470"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

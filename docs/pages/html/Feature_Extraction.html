@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MFCC &mdash; clustaudio clustaudio documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a31f3466"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Gridsearch" href="Cluster_Evaluation.html" />
+    <link rel="prev" title="Core functionalities" href="core_functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            clustaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Abstract.html#schematic-overview">Schematic overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core functionalities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html">Core functionalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#output">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#generic-functions">Generic functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#merge-expand-clusters">Merge/ Expand Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#move-files-based-on-cluster-labels">Move files based on cluster labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_functions.html#plotting">Plotting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Feature Extraction</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MFCC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#spectral-features">Spectral Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#chroma-features">Chroma Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#combined-features">Combined Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#audio-fingerprinting">Audio Fingerprinting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#metadata-features">Metadata Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#feature-comparison">Feature Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#advanced-atc-and-noisy-audio">Advanced: ATC and Noisy Audio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Cluster Evaluation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html">Gridsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#silhouette">Silhouette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbindex">DBindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#dbscan">DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#clustering-in-different-feature-spaces">Clustering in Different Feature Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cluster_Evaluation.html#complete-atc-example">Complete ATC Example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Find/Predict</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Find.html">k-nearest neighbour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#probability-density-fitting">Probability density fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#more-examples">More examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#atc-speaker-clustering-example">ATC Speaker Clustering Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#distance-metrics">Distance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find.html#plot-find-results">Plot Find Results</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Performance</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Performance.html">Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Save and Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Save_and_Load.html">Save and Load</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clustaudio.clustaudio.html">API References</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">clustaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MFCC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Feature_Extraction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mfcc">
+<h1>MFCC<a class="headerlink" href="#mfcc" title="Link to this heading"></a></h1>
+<p>Mel-Frequency Cepstral Coefficients (MFCC) is the primary feature extraction method for audio analysis and speech processing.
+In <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> the MFCC features are extracted using the <a class="reference external" href="https://librosa.org/">librosa</a> library, providing a compact representation of the audio’s spectral characteristics.
+MFCCs capture the timbral characteristics of audio and are widely used in speech recognition, music genre classification, and audio similarity detection.</p>
+<p>The MFCC feature descriptor represents the short-term power spectrum of sound, approximating the human auditory system’s response.
+It is computed by:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Converting the audio signal to a mel-frequency spectrogram</p></li>
+<li><p>Applying the Discrete Cosine Transform (DCT) to the mel-spectrogram</p></li>
+<li><p>Extracting typically 13-40 coefficients (default: 13)</p></li>
+<li><p>Computing mean and standard deviation statistics over time</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>MFCCs are particularly effective for:</dt><dd><ul class="simple">
+<li><p>Speech and voice analysis (speaker identification, emotion recognition)</p></li>
+<li><p>Music analysis (genre classification, similarity detection)</p></li>
+<li><p>General audio clustering and organization</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize with MFCC and 13 coefficients (default)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">params_mfcc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_mfcc&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">})</span>
+
+<span class="c1"># Use 20 coefficients for more detailed representation</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">params_mfcc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_mfcc&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;n_mels&#39;</span><span class="p">:</span> <span class="mi">128</span><span class="p">})</span>
+
+<span class="c1"># Load example audio data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;music&#39;</span><span class="p">)</span>
+
+<span class="c1"># Import audio files</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Extract features using method</span>
+<span class="n">Xfeat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_feat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Alternatively, the features are also stored in the results dict</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span>
+
+<span class="c1"># Alternatively, the features are also stored in the results dict using the run-at-once function.</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Extracted MFCC features</span>
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>MFCC Parameters:</strong></p>
+<p>The input parameters for MFCC extraction can be configured via <code class="docutils literal notranslate"><span class="pre">params_mfcc</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_mfcc</span></code>: Number of MFCC coefficients to extract (default: 13, typical range: 13-40)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_fft</span></code>: FFT window size (default: 2048)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hop_length</span></code>: Number of samples between successive frames (default: 512)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_mels</span></code>: Number of mel frequency bands (default: 128)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmin</span></code>: Minimum frequency in Hz (default: 0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmax</span></code>: Maximum frequency in Hz (default: None, which uses sr/2)</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Advanced MFCC configuration</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span>
+    <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">,</span>  <span class="c1"># Sample rate</span>
+    <span class="n">params_mfcc</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;n_mfcc&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>      <span class="c1"># More coefficients for detail</span>
+        <span class="s1">&#39;n_fft&#39;</span><span class="p">:</span> <span class="mi">2048</span><span class="p">,</span>     <span class="c1"># FFT window size</span>
+        <span class="s1">&#39;hop_length&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="c1"># Frame hop</span>
+        <span class="s1">&#39;n_mels&#39;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>     <span class="c1"># Mel bands</span>
+        <span class="s1">&#39;fmin&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>         <span class="c1"># Min frequency</span>
+        <span class="s1">&#39;fmax&#39;</span><span class="p">:</span> <span class="mi">8000</span>       <span class="c1"># Max frequency (useful for speech)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Load and cluster</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/path/to/audio/files/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="spectral-features">
+<h1>Spectral Features<a class="headerlink" href="#spectral-features" title="Link to this heading"></a></h1>
+<p>Spectral features capture the frequency domain characteristics of audio signals. These features describe the distribution and dynamics of energy across different frequencies.
+In <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code>, spectral features include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Spectral Centroid</strong>: The “center of mass” of the spectrum, indicating brightness</p></li>
+<li><p><strong>Spectral Rolloff</strong>: The frequency below which 85% of spectral energy is contained</p></li>
+<li><p><strong>Spectral Contrast</strong>: The difference between peaks and valleys in the spectrum</p></li>
+<li><p><strong>Spectral Bandwidth</strong>: The spread of frequencies around the centroid</p></li>
+<li><p><strong>Zero Crossing Rate</strong>: Rate at which the signal changes sign, indicating percussiveness</p></li>
+<li><p><strong>RMS Energy</strong>: Root Mean Square energy, representing overall loudness</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>These features are effective for:</dt><dd><ul class="simple">
+<li><p>Timbral similarity and texture analysis</p></li>
+<li><p>Music genre classification</p></li>
+<li><p>Audio quality assessment</p></li>
+<li><p>Distinguishing between different sound types</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize with spectral features</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load example audio data</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;environmental_sounds&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract spectral features</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># The features contain: centroid, rolloff, contrast, bandwidth, ZCR, RMS</span>
+<span class="c1"># Each with mean and std statistics = 12 features total</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature shape: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Spectral Parameters:</strong></p>
+<p>The input parameters for spectral features can be configured via <code class="docutils literal notranslate"><span class="pre">params_spectral</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_fft</span></code>: FFT window size (default: 2048)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hop_length</span></code>: Hop length between frames (default: 512)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="chroma-features">
+<h1>Chroma Features<a class="headerlink" href="#chroma-features" title="Link to this heading"></a></h1>
+<p>Chroma features (chromagram or pitch class profiles) represent the 12 different pitch classes (C, C#, D, D#, E, F, F#, G, G#, A, A#, B).
+These features are particularly useful for music analysis where harmonic and melodic characteristics are important.</p>
+<dl class="simple">
+<dt>Chroma features capture:</dt><dd><ul class="simple">
+<li><p>Harmonic content of the audio</p></li>
+<li><p>Pitch class distribution over time</p></li>
+<li><p>Musical similarity independent of timbre</p></li>
+</ul>
+</dd>
+<dt>Applications include:</dt><dd><ul class="simple">
+<li><p>Music similarity and cover song detection</p></li>
+<li><p>Chord recognition</p></li>
+<li><p>Key detection</p></li>
+<li><p>Harmonic analysis</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize with chroma features</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma&#39;</span><span class="p">,</span> <span class="n">params_chroma</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_chroma&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+
+<span class="c1"># Load music files</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/path/to/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;wav&#39;</span><span class="p">])</span>
+
+<span class="c1"># Extract chroma features</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Features include mean and std for each of 12 pitch classes = 24 features</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chroma features: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Chroma Parameters:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_chroma</span></code>: Number of chroma bins (default: 12 for 12 pitch classes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_fft</span></code>: FFT window size (default: 2048)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hop_length</span></code>: Hop length (default: 512)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="combined-features">
+<h1>Combined Features<a class="headerlink" href="#combined-features" title="Link to this heading"></a></h1>
+<p>For comprehensive audio analysis, <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> supports combining multiple feature types. The most effective combination is MFCC with spectral features, providing both cepstral and frequency-domain characteristics.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize with combined MFCC and spectral features</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc-spectral&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># This extracts both MFCC (26 features: 13 coeffs × 2 stats)</span>
+<span class="c1"># and spectral (12 features: 6 types × 2 stats)</span>
+<span class="c1"># Total: 38 features</span>
+
+<span class="c1"># Load and cluster</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/path/to/audio/&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined features: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: (n_files, 38)</span>
+</pre></div>
+</div>
+<p>Another example combining MFCC with chroma:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize with MFCC</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">22050</span><span class="p">)</span>
+
+<span class="c1"># Load audio</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Extract MFCC</span>
+<span class="n">mfcc_feat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_mfcc</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">])</span>
+
+<span class="c1"># Extract chroma</span>
+<span class="n">chroma_feat</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">extract_chroma</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">])</span>
+
+<span class="c1"># Combine manually</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">combined_feat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">mfcc_feat</span><span class="p">,</span> <span class="n">chroma_feat</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MFCC shape: </span><span class="si">{</span><span class="n">mfcc_feat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chroma shape: </span><span class="si">{</span><span class="n">chroma_feat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined shape: </span><span class="si">{</span><span class="n">combined_feat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="audio-fingerprinting">
+<h1>Audio Fingerprinting<a class="headerlink" href="#audio-fingerprinting" title="Link to this heading"></a></h1>
+<p>Audio fingerprinting creates compact perceptual hashes for duplicate detection and similarity matching. Unlike MFCC or spectral features which capture acoustic properties, fingerprints are designed to be robust to encoding variations, compression, and minor distortions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> supports multiple fingerprinting methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>chroma_hash</strong>: Chroma-based perceptual hashing (default)</p></li>
+<li><p><strong>spectral_hash</strong>: Mel-spectrogram based hashing</p></li>
+<li><p><strong>chromaprint</strong>: Industry-standard Chromaprint/AcoustID (requires installation)</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Applications:</dt><dd><ul class="simple">
+<li><p>Finding exact duplicates (different encodings, bitrates)</p></li>
+<li><p>Detecting near-duplicates (covers, remixes)</p></li>
+<li><p>Fast similarity comparison</p></li>
+<li><p>Copyright detection</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">listdir</span>
+
+<span class="c1"># Get audio files</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music_library/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">,</span> <span class="s1">&#39;wav&#39;</span><span class="p">])</span>
+
+<span class="c1"># Compute fingerprints for all files</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">batch_compute_fingerprints</span><span class="p">(</span>
+    <span class="n">pathnames</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma_hash&#39;</span>  <span class="c1"># or &#39;chromaprint&#39; if installed</span>
+<span class="p">)</span>
+
+<span class="c1"># Find duplicates (threshold: 0 = exact, 1 = very different)</span>
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">find_duplicates</span><span class="p">(</span><span class="n">fps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Review duplicate groups</span>
+<span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">duplicates</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Duplicates found:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">pathnames</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Comparing specific files:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+
+<span class="c1"># Compute fingerprints</span>
+<span class="n">fp1</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">compute_fingerprint</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;song1.mp3&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma_hash&#39;</span><span class="p">)</span>
+<span class="n">fp2</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">compute_fingerprint</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;song2.mp3&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;chroma_hash&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compare (returns similarity score: 0 = identical, 1 = very different)</span>
+<span class="n">similarity</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">compare_fingerprints</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">similarity</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files are duplicates or very similar&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">similarity</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files are similar (possibly cover or remix)&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files are different&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Integration with clustering:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fingerprint</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Compute fingerprints</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">])</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">batch_compute_fingerprints</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Compute distance matrix for clustering</span>
+<span class="n">dist_matrix</span> <span class="o">=</span> <span class="n">fingerprint</span><span class="o">.</span><span class="n">compute_fingerprint_matrix</span><span class="p">(</span><span class="n">fps</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use with clusteval for clustering</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clusteval</span><span class="w"> </span><span class="kn">import</span> <span class="n">clusteval</span>
+<span class="n">ce</span> <span class="o">=</span> <span class="n">clusteval</span><span class="p">()</span>
+<span class="n">ce</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dist_matrix</span><span class="p">)</span>
+<span class="n">ce</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ce</span><span class="o">.</span><span class="n">scatter</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="metadata-features">
+<h1>Metadata Features<a class="headerlink" href="#metadata-features" title="Link to this heading"></a></h1>
+<p>Audio metadata (ID3 tags for MP3, Vorbis comments for OGG/FLAC, MP4 metadata) contains valuable information that can be used for clustering audio files, especially for organizing music libraries.</p>
+<dl class="simple">
+<dt>Metadata fields include:</dt><dd><ul class="simple">
+<li><p><strong>Artist, Album, Title</strong>: Track identification</p></li>
+<li><p><strong>Genre, Year</strong>: Musical categorization</p></li>
+<li><p><strong>Duration, Bitrate, Sample Rate</strong>: Technical properties</p></li>
+<li><p><strong>Track Number</strong>: Album organization</p></li>
+</ul>
+</dd>
+<dt>This approach is particularly useful for:</dt><dd><ul class="simple">
+<li><p>Organizing music libraries by artist/album</p></li>
+<li><p>Grouping by genre or year</p></li>
+<li><p>Finding files with missing or inconsistent metadata</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">metadata</span>
+
+<span class="c1"># Extract metadata from a single file</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">extract_metadata</span><span class="p">(</span><span class="s1">&#39;song.mp3&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Artist: </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Album: </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;album&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Genre: </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;genre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration: </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Batch metadata extraction:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">listdir</span>
+
+<span class="c1"># Get all audio files</span>
+<span class="n">pathnames</span> <span class="o">=</span> <span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/music/&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;flac&#39;</span><span class="p">,</span> <span class="s1">&#39;ogg&#39;</span><span class="p">,</span> <span class="s1">&#39;m4a&#39;</span><span class="p">])</span>
+
+<span class="c1"># Extract metadata from all files</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">extract_metadata_batch</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># View results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;artist&#39;</span><span class="p">,</span> <span class="s1">&#39;album&#39;</span><span class="p">,</span> <span class="s1">&#39;genre&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Check metadata coverage</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Metadata coverage:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Artist: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Album: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;album&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Genre: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;genre&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Clustering by metadata:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">metadata</span>
+
+<span class="c1"># Extract metadata</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">extract_metadata_batch</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Cluster by artist and album</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">cluster_by_metadata</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">cluster_by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">,</span> <span class="s1">&#39;album&#39;</span><span class="p">],</span>
+    <span class="n">similarity_threshold</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+
+<span class="c1"># View clusters</span>
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="n">cluster_files</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Cluster </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cluster_files</span><span class="p">[[</span><span class="s1">&#39;artist&#39;</span><span class="p">,</span> <span class="s1">&#39;album&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Integration with main class:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+
+<span class="c1"># Initialize with metadata method</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">)</span>
+
+<span class="c1"># Automatically clusters by artist/album/genre</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="s1">&#39;/music_library/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Results contain cluster labels based on metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2"> groups&quot;</span><span class="p">)</span>
+
+<span class="c1"># Organize files</span>
+<span class="n">cl</span><span class="o">.</span><span class="n">move_to_dir</span><span class="p">(</span><span class="n">create_playlists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Converting metadata to ML features:</strong></p>
+<p>For use with traditional clustering algorithms, metadata can be converted to numerical features:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">metadata</span>
+
+<span class="c1"># Extract metadata</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">extract_metadata_batch</span><span class="p">(</span><span class="n">pathnames</span><span class="p">)</span>
+
+<span class="c1"># Convert to numerical features</span>
+<span class="c1"># Includes: duration, bitrate, year (normalized)</span>
+<span class="c1"># Plus one-hot encoding for top 20 artists/albums/genres</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">create_metadata_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">encode_categorical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Use with clustaudio</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">)</span>  <span class="c1"># Or any method</span>
+
+<span class="c1"># Use metadata features directly</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">min_clust</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_clust</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="feature-comparison">
+<h1>Feature Comparison<a class="headerlink" href="#feature-comparison" title="Link to this heading"></a></h1>
+<p>Choosing the right feature extraction method depends on your specific use case:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Feature Method Comparison</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Speed</p></th>
+<th class="head"><p>Features</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MFCC</p></td>
+<td><p>General audio, speech</p></td>
+<td><p>Fast</p></td>
+<td><p>26 (default)</p></td>
+<td><p>Voice clustering, general purpose</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spectral</p></td>
+<td><p>Timbre, texture</p></td>
+<td><p>Fast</p></td>
+<td><p>12</p></td>
+<td><p>Sound classification, quality</p></td>
+</tr>
+<tr class="row-even"><td><p>Chroma</p></td>
+<td><p>Music, harmony</p></td>
+<td><p>Medium</p></td>
+<td><p>24</p></td>
+<td><p>Music similarity, covers</p></td>
+</tr>
+<tr class="row-odd"><td><p>MFCC-Spectral</p></td>
+<td><p>Comprehensive</p></td>
+<td><p>Medium</p></td>
+<td><p>38</p></td>
+<td><p>Best overall performance</p></td>
+</tr>
+<tr class="row-even"><td><p>Fingerprint</p></td>
+<td><p>Duplicates</p></td>
+<td><p>Fast</p></td>
+<td><p>32-512 bits</p></td>
+<td><p>Duplicate detection</p></td>
+</tr>
+<tr class="row-odd"><td><p>Metadata</p></td>
+<td><p>Organization</p></td>
+<td><p>Very Fast</p></td>
+<td><p>Varies</p></td>
+<td><p>Library organization</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendations:</strong></p>
+<ul class="simple">
+<li><p><strong>For speech/podcasts</strong>: Use MFCC with sr=16000</p></li>
+<li><p><strong>For music similarity</strong>: Use MFCC-Spectral or Chroma</p></li>
+<li><p><strong>For duplicate detection</strong>: Use fingerprinting</p></li>
+<li><p><strong>For library organization</strong>: Use metadata clustering</p></li>
+<li><p><strong>For noisy audio (ATC, radio)</strong>: Use MFCC with enhancement (see below)</p></li>
+<li><p><strong>For best overall results</strong>: Use MFCC-Spectral with sr=22050</p></li>
+</ul>
+</section>
+<section id="advanced-atc-and-noisy-audio">
+<h1>Advanced: ATC and Noisy Audio<a class="headerlink" href="#advanced-atc-and-noisy-audio" title="Link to this heading"></a></h1>
+<p>For challenging audio scenarios like Air Traffic Control communications, radio transmissions, or other noisy environments, <code class="docutils literal notranslate"><span class="pre">clustaudio</span></code> provides specialized enhancement before feature extraction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">clustaudio</span><span class="w"> </span><span class="kn">import</span> <span class="n">clustaudio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vad</span>
+
+<span class="c1"># Initialize for speech (16kHz typical for radio)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">clustaudio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mfcc&#39;</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+
+<span class="c1"># Step 1: Enhance noisy ATC audio</span>
+<span class="n">enhanced</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">enhance_atc_audio</span><span class="p">(</span>
+    <span class="n">pathnames</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;aggressive&#39;</span>  <span class="c1"># &#39;light&#39;, &#39;moderate&#39;, or &#39;aggressive&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 2: Separate voice from noise</span>
+<span class="n">separated</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">separate_foreground_background</span><span class="p">(</span>
+    <span class="n">enhanced</span><span class="p">[</span><span class="s1">&#39;pathnames_enhanced&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;spectral_masking&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 3: Extract voice segments</span>
+<span class="n">segments</span> <span class="o">=</span> <span class="n">vad</span><span class="o">.</span><span class="n">batch_extract_voice_segments</span><span class="p">(</span>
+    <span class="n">separated</span><span class="p">[</span><span class="s1">&#39;pathnames_foreground&#39;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 4: Cluster voice segments</span>
+<span class="n">pathnames_voice</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">p</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span>
+    <span class="k">if</span> <span class="n">seg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pathnames_segments&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">[</span><span class="s2">&quot;pathnames_segments&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pathnames_voice</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clustered </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pathnames_voice</span><span class="p">)</span><span class="si">}</span><span class="s2"> voice segments&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2"> speaker/controller groups&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_functions.html" class="btn btn-neutral float-left" title="Core functionalities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Cluster_Evaluation.html" class="btn btn-neutral float-right" title="Gridsearch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

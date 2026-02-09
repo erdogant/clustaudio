@@ -1,0 +1,10 @@
+# Include core requirements
+-r requirements.txt
+
+# Documentation dependencies
+sphinx>=4.0.0
+sphinx-rtd-theme>=1.0.0
+sphinx-autodoc-typehints>=1.19.0
+nbsphinx>=0.8.0
+myst-parser>=0.18.0     # Markdown support in Sphinx
+sphinx-copybutton>=0.5.0  # Copy button for code blocks

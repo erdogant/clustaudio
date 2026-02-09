@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-2nUNxX.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="16.36">
+<Turn startTime="0" endTime="16.36">
+<Sync time="0.000"/>
+..
+<Sync time="1.390"/>
+[air]Lufthansa 6 T U we arriving the top [unintelligible] [ehm_??] flight level 3 3 0 available
+<Sync time="6.860"/>
+..
+<Sync time="7.370"/>
+[ground]sorry 3 1 0 is maximum I can offer you now
+<Sync time="9.990"/>
+..
+<Sync time="16.360"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

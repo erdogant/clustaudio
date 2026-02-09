@@ -1,0 +1,15 @@
+# Include all core requirements
+-r requirements.txt
+
+# Advanced audio processing features
+noisereduce>=2.0.0      # Advanced noise reduction
+webrtcvad>=2.0.10       # Voice activity detection
+mutagen>=1.45.0         # Audio metadata extraction (ID3, Vorbis, MP4)
+tinytag>=1.9.0          # Lightweight metadata extraction
+eyed3>=0.9.6            # MP3 metadata and ID3 tags
+pyacoustid>=1.2.0       # Audio fingerprinting (requires chromaprint)
+
+# Note: pyacoustid requires the chromaprint library to be installed on your system
+# - Ubuntu/Debian: sudo apt-get install libchromaprint-dev
+# - macOS: brew install chromaprint
+# - Windows: Download from https://acoustid.org/chromaprint

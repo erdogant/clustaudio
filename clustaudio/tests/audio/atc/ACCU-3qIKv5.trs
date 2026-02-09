@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-3qIKv5.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="8.17">
+<Turn startTime="0" endTime="8.17">
+<Sync time="0.000"/>
+..
+<Sync time="0.790"/>
+[air] Fedex 3 8 checking at 3 1 0 [noise]
+<Sync time="3.150"/>
+..
+<Sync time="4.650"/>
+[ground] Fedex 3 8 [ehm_??] morning radar contact
+<Sync time="7.120"/>
+..
+<Sync time="8.170"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

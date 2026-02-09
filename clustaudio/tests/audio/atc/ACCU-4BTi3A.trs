@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-4BTi3A.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="38.93">
+<Turn startTime="0" endTime="38.93">
+<Sync time="0.000"/>
+..
+<Sync time="0.910"/>
+[air] Praha Dynasty 8 0 6 2 request FL 3 3 0
+<Sync time="5.140"/>
+..
+<Sync time="7.200"/>
+[ground] Dynasty 8 0 6 2 climb to FL 3 3 0
+<Sync time="10.310"/>
+..
+<Sync time="10.770"/>
+[air] climb FL 3 3 0 Dynasty 8 0 6 2 [noise]
+<Sync time="13.470"/>
+..
+<Sync time="15.280"/>
+[air] Praha radar CSA 4 K P [czech_|]dobrý den[|_czech] reaching FL 2 8 0 to [unintelligible]
+<Sync time="20.150"/>
+..
+<Sync time="20.470"/>
+[ground] CSA 4 K P [czech_|]dobrý den[|_czech] radar contact climb to FL 3 4 0
+<Sync time="24.410"/>
+..
+<Sync time="24.820"/>
+[air] climbing FL 3 4 0 CSA 4 K P [noise]
+<Sync time="27.610"/>
+..
+<Sync time="28.390"/>
+[air] Praha good afternoon Lufthansa 7 1 8 passing FL 2 1 0 climbing FL 2 8 0
+<Sync time="33.930"/>
+..
+<Sync time="35.370"/>
+[ground] Lufthansa 7 1 8 hello radar contact
+<Sync time="37.660"/>
+..
+<Sync time="38.930"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

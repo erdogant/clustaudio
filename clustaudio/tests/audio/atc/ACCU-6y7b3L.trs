@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="CP1250"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans scribe="(unknown)" audio_filename="e2_ACCU-6y7b3L.wav" version="23" version_date="070906">
+<Episode>
+<Section type="report" startTime="0" endTime="36.88">
+<Turn startTime="0" endTime="36.88">
+<Sync time="0.000"/>
+..
+<Sync time="2.740"/>
+[air] Praha good evening Quant+
+<Sync time="4.020"/>
+..
+<Sync time="4.450"/>
+[air] 6 climbing FL 3 3 0 direct PATKA squawking 2 1 0 2
+<Sync time="9.900"/>
+..
+<Sync time="12.010"/>
+[ground] good day radar contact
+<Sync time="13.170"/>
+..
+<Sync time="21.510"/>
+[air] Praha radar [czech_|]dobrý večer[|_czech] Skytravel 8 2 4 climbing FL 1 6 0 [noise]
+<Sync time="25.520"/>
+..
+<Sync time="26.900"/>
+[ground] Skytravel 8 2 4 Praha [czech_|]dobrý večer[|_czech] radar contact [ehm_??] climb FL 3 1 0
+<Sync time="31.770"/>
+..
+<Sync time="32.580"/>
+[air] climbing level 3 1 0 Skytravel 8 2 4
+<Sync time="35.190"/>
+..
+<Sync time="36.880"/>
+</Turn>
+</Section>
+</Episode>
+</Trans>

@@ -1,0 +1,30 @@
+# Include all requirements including advanced features
+-r requirements-advanced.txt
+
+# Development dependencies
+pytest>=7.0.0           # Testing framework
+pytest-cov>=3.0.0       # Code coverage
+pytest-mock>=3.10.0     # Mocking for tests
+
+# Documentation
+sphinx>=4.0.0           # Documentation generator
+sphinx-rtd-theme>=1.0.0 # ReadTheDocs theme
+sphinx-autodoc-typehints>=1.19.0  # Type hints in docs
+nbsphinx>=0.8.0         # Jupyter notebook support
+
+# Code quality
+black>=22.0.0           # Code formatter
+flake8>=4.0.0           # Linter
+mypy>=0.991             # Type checker
+isort>=5.10.0           # Import sorter
+pylint>=2.15.0          # Code analysis
+
+# Build tools
+build>=0.10.0           # Build frontend
+twine>=4.0.0            # Upload to PyPI
+setuptools>=65.0.0      # Build backend
+wheel>=0.38.0           # Wheel builder
+
+# Jupyter notebook support
+jupyter>=1.0.0          # Jupyter notebook
+ipykernel>=6.0.0        # IPython kernel
