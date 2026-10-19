@@ -55,28 +55,14 @@ Besides clustering of audio, the ``clustaudio`` library can also find the most s
     * It works out of the box.
 
 
-# 
-**⭐️ Star this repo if you like it ⭐️**
-#
-
-### Blogs
-
-* Read the [blog](https://towardsdatascience.com/a-step-by-step-guide-for-clustering-audio-12345) to get a structured overview of how to cluster audio files.
-
-# 
-
-### [Documentation pages](https://erdogant.github.io/clustaudio/)
-
-On the [documentation pages](https://erdogant.github.io/clustaudio/) you can find detailed information about the working of ``clustaudio`` with many examples. 
-
-# 
+#### [Documentation pages](https://erdogant.github.io/clustaudio/)
 
 
 ### Installation
 
-##### It is advisable to create a new environment (e.g. with Conda). 
+##### It is advisable to create a new environment
 ```bash
-conda create -n env_clustaudio python=3.12
+conda create -n env_clustaudio python=3.14
 conda activate env_clustaudio
 ```
 
@@ -86,23 +72,10 @@ pip install clustaudio            # new install
 pip install -U clustaudio         # update to latest version
 ```
 
-##### Install with advanced features (recommended)
-```bash
-pip install clustaudio[advanced]  # includes denoising, VAD, metadata extraction
-```
-
 ##### Directly install from GitHub source
 ```bash
 pip install git+https://github.com/erdogant/clustaudio
 ```  
-
-##### Import clustaudio package
-
-```python
-from clustaudio import Clustaudio
-```
-
-<hr>
 
 ### Quick Start
 
@@ -191,7 +164,38 @@ results = cl.fit_transform(total_segments)
 
 cl.clusteval.scatter(results['xycoord'], s=200)
 
+# Make D3Blocks chart
+from d3blocks import D3Blocks
+import pandas as pd
+import numpy as np
+from pathlib import Path
+
+df = pd.DataFrame({
+    "labels": results["labels"],
+    "sample_rates": results["sample_rates"],
+    "durations": results["durations"],
+    "url": results["url"],
+    "directory": results["directory"],
+    "pathnames": results["pathnames"],
+})
+
+
+d3 = D3Blocks(chart="Scatter")
+d3.set_node_properties(df)
+d3.set_edge_properties(
+    x=results['xycoord'][:, 0],
+    y=results['xycoord'][:, 1],
+    size=np.minimum(results['durations'], 25),
+    tooltip=results['pathnames'],
+    opacity=0.55,
+    scale=True,
+    title="Audio t-SNE",
+    cmap="Set2",
+)
+d3.show()
+
 ```
+
 
 #### Audio Denoising
 
@@ -354,6 +358,7 @@ for label in np.unique(results['labels']):
     cluster_files = np.array(results['filenames'])[results['labels'] == label]
     if len(cluster_files) > 1:
         print(f"Potential duplicates: {cluster_files}")
+
 ```
 
 <hr>
@@ -511,26 +516,6 @@ Detailed documentation with many examples:
 
 <hr>
 
-### Requirements
-
-**Core:**
-- Python ≥ 3.8
-- librosa ≥ 0.10.0
-- soundfile ≥ 0.12.0
-- scikit-learn ≥ 1.0.0
-- numpy, pandas, matplotlib
-- clusteval, pca, distfit
-
-**Advanced (optional):**
-- noisereduce - Advanced denoising
-- webrtcvad - Voice activity detection
-- mutagen - Metadata extraction
-- pyacoustid - Audio fingerprinting
-
-See [requirements.txt](requirements.txt) for full list.
-
-<hr>
-
 ### Citation
 
 Please cite ``clustaudio`` if you use it in your research or project:
@@ -546,36 +531,19 @@ Please cite ``clustaudio`` if you use it in your research or project:
 
 <hr>
 
-### Support
 
-This project needs some love! ❤️ You can help in various ways:
+### Contributors
+Thank the contributors!
 
-* **Become a Sponsor!** Support continued development
-* **Star this repo** at the GitHub page
-* **Report bugs** and request features via Issues
-* **Contribute code** via Pull Requests
-* **Share your use cases** - we'd love to hear how you use clustaudio!
+<p align="left">
+  <a href="https://github.com/erdogant/clustaudio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=erdogant/clustaudio" />
+  </a>
+</p>
 
-Why sponsor? Read more on the [Sponsor GitHub Page](https://erdogant.github.io/clustaudio/pages/html/Documentation.html#).
+### Maintainer
+* Erdogan Taskesen, GitHub: [erdogant](https://github.com/erdogant)
+* Contributions are welcome.
+* Yes! This library is entirely **free**, but it runs on coffee! :) Feel free to support with a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a>.
 
-<hr>
-
-### License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
-<hr>
-
-### Acknowledgments
-
-Built on top of excellent open-source libraries:
-- [librosa](https://librosa.org/) - Audio analysis
-- [scikit-learn](https://scikit-learn.org/) - Machine learning
-- [clusteval](https://github.com/erdogant/clusteval) - Cluster evaluation
-- [pca](https://github.com/erdogant/pca) - Dimensionality reduction
-
-<hr>
-
-**⭐️ Star this repo if you like it ⭐️**
-
-Made with ❤ by [Erdogan Taskesen](https://erdogant.github.io)
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy+me+a+coffee&emoji=&slug=erdogant&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/erdogant)
