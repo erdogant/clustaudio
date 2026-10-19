@@ -72,23 +72,10 @@ pip install clustaudio            # new install
 pip install -U clustaudio         # update to latest version
 ```
 
-##### Install with advanced features (recommended)
-```bash
-pip install clustaudio[advanced]  # includes denoising, VAD, metadata extraction
-```
-
 ##### Directly install from GitHub source
 ```bash
 pip install git+https://github.com/erdogant/clustaudio
 ```  
-
-##### Import clustaudio package
-
-```python
-from clustaudio import Clustaudio
-```
-
-<hr>
 
 ### Quick Start
 
@@ -177,7 +164,38 @@ results = cl.fit_transform(total_segments)
 
 cl.clusteval.scatter(results['xycoord'], s=200)
 
+# Make D3Blocks chart
+from d3blocks import D3Blocks
+import pandas as pd
+import numpy as np
+from pathlib import Path
+
+df = pd.DataFrame({
+    "labels": results["labels"],
+    "sample_rates": results["sample_rates"],
+    "durations": results["durations"],
+    "url": results["url"],
+    "directory": results["directory"],
+    "pathnames": results["pathnames"],
+})
+
+
+d3 = D3Blocks(chart="Scatter")
+d3.set_node_properties(df)
+d3.set_edge_properties(
+    x=results['xycoord'][:, 0],
+    y=results['xycoord'][:, 1],
+    size=np.minimum(results['durations'], 25),
+    tooltip=results['pathnames'],
+    opacity=0.55,
+    scale=True,
+    title="Audio t-SNE",
+    cmap="Set2",
+)
+d3.show()
+
 ```
+
 
 #### Audio Denoising
 
@@ -340,6 +358,7 @@ for label in np.unique(results['labels']):
     cluster_files = np.array(results['filenames'])[results['labels'] == label]
     if len(cluster_files) > 1:
         print(f"Potential duplicates: {cluster_files}")
+
 ```
 
 <hr>
