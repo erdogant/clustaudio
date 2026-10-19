@@ -1,69 +1,79 @@
-from clustaudio import Clustaudio
-
-sr = 22050
-cl = Clustaudio(sr=sr)
-filepaths = cl.import_example(data='atc')
-
-result = cl.vad.extract_voice_segments(
-    filepaths,
-    sr=sr,
-    method='energy',
-    energy_threshold=0.01
-)
-
-
 # %%
-
-
-from clustaudio import Clustaudio
-
-sr = 22050
-cl = Clustaudio(sr=sr)
-filepaths = cl.import_example(data='atc')
-audio = cl.import_data(filepaths)['audio']
-
-segments = cl.vad.detect_voice_segments(
-    audio,
-    sr=sr,
-    method='energy',
-    energy_threshold=0.02,
-    min_segment_duration=0.1
-)
-
-
-# %%
-
-
 # Use combined features
 from clustaudio import Clustaudio
 cl = Clustaudio()
+
 # Check output variables
-X = cl.import_example(data='atc', n=10)
+X = cl.import_example(data='atc', n=100)
+X = cl.import_example(data='various', n=100)
+
 # Cluster with custom parameters
 cl.fit_transform(X)
 cl.clusteval.scatter(cl.results['xycoord'], s=200)
 
 
 # %%
-
-
 from clustaudio import Clustaudio
+from pathlib import Path
+from scatterd import scatterd
+from d3blocks import D3Blocks
+import pandas as pd
 import numpy as np
 
-sr = 44100
-cl = Clustaudio(method="mfcc", verbose="warning")
-audio = cl.import_example(data='wave', n=3, freq=440, sr=sr, duration=1.0)
+# dirpath = r'D://REPOS//clustaudio//data//Air Traffic Control Communication'
+dirpath = r'D:\data\mnist'
 
-# Extract features
-features = cl.extract_mfcc(audio, sr=sr)
+# Use combined features
+cl = Clustaudio(
+    method='mfcc',
+    sr=22050,
+    mono=True,
+    normalize=True,
+    trim_silence=True,
+    # params_mfcc={'n_mfcc': 20, 'n_mels': 128}
+)
 
-assert isinstance(features, np.ndarray)
+# Cluster with custom parameters
+results = cl.fit_transform(
+    dirpath,
+    cluster='dbscan',
+    evaluate='silhouette',
+    metric='euclidean',
+    min_clust=3,
+    max_clust=15
+)
 
-expected = cl.params_mfcc["n_mfcc"] * 2
-assert len(features) == expected
+results["directory"] = np.array([Path(str(x)).parent.name for x in results["pathnames"]])
+scatterd(results['xycoord'][:, 0], results['xycoord'][:, 1], density=False, labels=results['directory'], title='mfcc')
 
-assert not np.isnan(features).any()
-assert not np.isinf(features).any()
+# Get representative samples
+# unique_samples = cl.unique(metric='cosine')
+# print(unique_samples['pathnames'])  
+
+df = pd.DataFrame({
+    "labels": results["labels"],
+    "sample_rates": results["sample_rates"],
+    "durations": results["durations"],
+    "url": results["url"],
+    "directory": results["directory"],
+    "pathnames": results["pathnames"],
+})
+
+
+d3 = D3Blocks(chart="Scatter")
+d3.set_node_properties(df)
+d3.set_edge_properties(
+    x=results['xycoord'][:, 0],
+    y=results['xycoord'][:, 1],
+    size=np.minimum(results['durations'], 25),
+    color=results['directory'],
+    tooltip=results['pathnames'],
+    opacity=0.55,
+    scale=True,
+    title="Audio t-SNE",
+    cmap="Set2",
+)
+d3.show(label_radio=["Combined", "Background", "voice"])
 
 
 # %%
@@ -84,120 +94,19 @@ cl.plot_find()
 # cl.move_to_dir(create_playlists=True)
 
 # %%
-
-
-
-
-
-# %%
-from clustaudio import Clustaudio
-dirpath = r'D://REPOS//clustaudio//data//Air Traffic Control Communication'
-dirpath = r'D:\REPOS\clustaudio\data\audio_dataset\train'
-
-# Use combined features
-cl = Clustaudio(
-    method='mfcc',
-    sr=44100,
-    mono=True,
-    normalize=True,
-    trim_silence=True,
-    params_mfcc={'mfcc': 20, 'n_mels': 128}
-)
-
-# Cluster with custom parameters
-results = cl.fit_transform(
-    dirpath,
-    cluster='dbscan',
-    evaluate='silhouette',
-    metric='euclidean',
-    min_clust=3,
-    max_clust=15
-)
-
-# Get representative samples
-unique_samples = cl.unique(metric='cosine')
-print(unique_samples['pathnames'])  
-
-
-# %%
-# Audio Files
-#     ↓
-# Import & Preprocess (normalize, resample, mono)
-#     ↓
-# Optional: Denoise / Enhance / Separate
-#     ↓
-# Optional: VAD (extract voice segments)
-#     ↓
-# Feature Extraction (MFCC, Spectral, Chroma)
-#     ↓
-# Embedding (t-SNE, UMAP)
-#     ↓
-# Clustering (Agglomerative, KMeans, DBSCAN)
-#     ↓
-# Results (labels, centroids, visualization)
-#     ↓
-# Organization (playlists, file management)
-
-
-# Phase 1 Implementation Complete! 🎉
-# I've successfully completed Phase 1: Core Functionality of the clustaudio image-to-audio conversion. Here's what has been delivered:
-# ✅ What Was Accomplished
-
-# Complete Feature Replacement
-
-# ❌ Removed: imread(), OpenCV, PIL, imagehash, HOG features
-# ✅ Added: audioread(), librosa, soundfile, MFCC/spectral/chroma features
-
-# Core Methods Implemented (13 essential methods)
-
-# audioread() - Load audio files with preprocessing
-# preprocessing() - Audio-specific preprocessing pipeline
-# extract_mfcc() - MFCC feature extraction
-# extract_spectral() - Spectral features (6 types)
-# extract_chroma() - Chromagram features
-# extract_feat() - Main feature dispatcher
-# import_data() - Multi-format data import
-# fit_transform() - Complete clustering workflow
-# cluster() - Cluster evaluation and labeling
-# embedding() - Dimensionality reduction for visualization
-# unique() - Find representative samples
-# clean_init() - Reset state
-
-
-# Code Quality
-
-# ✅ 1,631 lines of well-documented code
-# ✅ 24 methods in main class
-# ✅ 6 helper functions
-# ✅ 162 lines of class documentation
-# ✅ Valid Python syntax (AST verified)
-# ✅ All audio imports correct
-# ✅ All image imports removed
-
-# 🎯 Key Features Working
-
-# ✅ Load audio files (WAV, MP3, FLAC, OGG, M4A, AAC)
-# ✅ Extract MFCC features (13-40 coefficients)
-# ✅ Extract spectral features (centroid, rolloff, contrast, bandwidth, ZCR, RMS)
-# ✅ Extract chroma features (12 pitch classes)
-# ✅ Full clustering pipeline with clusteval integration
-# ✅ t-SNE embedding for visualization
-# ✅ Representative sample finding per cluster
-# ✅ Batch processing with progress bars
-# ✅ Flexible logging and verbosity control
-
-
-# %%
 from scatterd import scatterd
 from clustaudio import Clustaudio
+from d3blocks import D3Blocks
+import pandas as pd
 import os
+from pathlib import Path
 
 # methods = ['mfcc', 'spectral', 'chroma', 'mfcc-spectral', 'tempogram', 'mel-spectrogram', 'embeddings', 'fingerprint', 'metadata']
 method = 'mfcc'
 
 # Initialize with MFCC features
 cl = Clustaudio(
-    method=method, sr=44100,
+    method=method, sr=22050,
     mono=True,
     normalize=True,
     trim_silence=False,
@@ -219,9 +128,35 @@ try:
     cl.clusteval.scatter(results['xycoord'])
     # cl.clusteval.dendrogram()
     scatterd(results['xycoord'][:, 0], results['xycoord'][:, 1], density=False, labels=results['labels'], title=method)
-    cl.pca.scatter3d(labels=results['labels'])
 except:
     pass
+
+
+
+results["directory"] = np.array([Path(str(x)).parent.name for x in results["pathnames"]])
+scatterd(results['xycoord'][:, 0], results['xycoord'][:, 1], density=False, labels=results['directory'], title='mfcc')
+
+
+df = pd.DataFrame({
+    "labels": results["labels"],
+    "sample_rates": results["sample_rates"],
+    "durations": results["durations"],
+    "url": results["url"],
+    "pathnames": results["pathnames"],
+})
+
+d3 = D3Blocks()
+# Set properties
+d3.scatter(results['xycoord'][:, 0],
+           results['xycoord'][:, 1],
+           size=np.minimum(results['durations'], 25),
+           color=results['directory'],
+           opacity=0.55,
+           tooltip=results['pathnames'],
+           scale=True,
+           title="Audio t-SNE",
+           df=df,
+           )
 
 
 # %% METHOD TESTING
@@ -513,7 +448,7 @@ recommendation_paths = similar['user_favorite_song.mp3']['y_pathnames']
 
 # %% Full workflow test
 from clustaudio import Clustaudio
-filepath = r'../data/mp3/2 Brothers On The 4th Floor - Come Take My Hand.mp3'
+filepath = r'../data/mp3/my_fav_song.mp3'
 
 cl = Clustaudio(method='mfcc')
 

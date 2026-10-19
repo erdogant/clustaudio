@@ -11,7 +11,6 @@ This module provides advanced audio processing for:
 
 Designed to work with VAD for comprehensive audio analysis.
 
-Author: AI Assistant
 """
 
 import os

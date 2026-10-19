@@ -90,7 +90,7 @@ def test_chroma_batch():
     assert features.shape[1] == 24
     assert not np.isnan(features).any()
     assert not np.isinf(features).any()
-    
+
 
 
 # -----------------------------

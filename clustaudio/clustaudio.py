@@ -67,18 +67,22 @@ except ImportError:
     FINGERPRINT_AVAILABLE = False
     logging.warning("acoustid/chromaprint not available. Audio fingerprinting will be disabled.")
 
+
+
 try:
     import clustaudio.vad as vad
     import clustaudio.separation as separation
     import clustaudio.visualization as visualization
     import clustaudio.fingerprint as fingerprint
     import clustaudio.metadata as metadata
+    import clustaudio.visualization as viz
 except ImportError:
     import vad as vad
     import separation as separation
     import visualization as visualization
     import fingerprint as fingerprint
     import metadata as metadata
+    import visualization as viz
 
 logger = logging.getLogger(__name__)
 
@@ -2407,7 +2411,6 @@ class Clustaudio():
         >>> # Plot spectrograms for specific clusters
         >>> fig = cl.plot(labels=[0, 1, 2], show_spectrogram=True)
         """
-        import visualization as viz
 
         self._check_status()
 

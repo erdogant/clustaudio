@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [{ name = "Erdogan Taskesen", email = "erdogant@gmail.com" },]
 description = "Python package clustaudio is for unsupervised clustering of audio files using acoustic features, with support for denoising, voice activity detection, and audio separation."
 readme = "README.md"
-requires-python = ">=3.8,<3.14"
+requires-python = "<3.15"
 license = "MIT"
 keywords = [
     "clustering", 
@@ -27,12 +27,6 @@ keywords = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
     "Intended Audience :: Education",
     "Intended Audience :: Science/Research",
@@ -71,18 +65,17 @@ dependencies = [
     # Optional metadata support
     "geopy",
     "folium",
-]
-
-[project.optional-dependencies]
-# Advanced audio processing features
-advanced = [
-    "noisereduce>=2.0.0",      # Advanced noise reduction
+    
+    # Advanced audio processing features (optional)
+    "noisereduce>=2.0.0",       # Advanced noise reduction
     "webrtcvad>=2.0.10",        # Voice activity detection
     "mutagen>=1.45.0",          # Audio metadata extraction
     "tinytag>=1.9.0",           # Lightweight metadata
     "eyed3>=0.9.6",             # MP3 metadata
     "pyacoustid>=1.2.0",        # Audio fingerprinting
 ]
+
+[project.optional-dependencies]
 
 # Development dependencies
 dev = [
@@ -96,7 +89,6 @@ dev = [
 
 # All dependencies
 all = [
-    "clustaudio[advanced]",
     "clustaudio[dev]",
 ]
 
@@ -104,8 +96,6 @@ all = [
 Homepage = "https://erdogant.github.io/clustaudio"
 Download = "https://github.com/erdogant/clustaudio/archive/{version}.tar.gz"
 Documentation = "https://erdogant.github.io/clustaudio"
-"Source Code" = "https://github.com/erdogant/clustaudio"
-"Bug Tracker" = "https://github.com/erdogant/clustaudio/issues"
 
 [tool.setuptools]
 packages = ["clustaudio"]
