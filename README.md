@@ -511,26 +511,6 @@ Detailed documentation with many examples:
 
 <hr>
 
-### Requirements
-
-**Core:**
-- Python ≥ 3.8
-- librosa ≥ 0.10.0
-- soundfile ≥ 0.12.0
-- scikit-learn ≥ 1.0.0
-- numpy, pandas, matplotlib
-- clusteval, pca, distfit
-
-**Advanced (optional):**
-- noisereduce - Advanced denoising
-- webrtcvad - Voice activity detection
-- mutagen - Metadata extraction
-- pyacoustid - Audio fingerprinting
-
-See [requirements.txt](requirements.txt) for full list.
-
-<hr>
-
 ### Citation
 
 Please cite ``clustaudio`` if you use it in your research or project:
@@ -546,36 +526,19 @@ Please cite ``clustaudio`` if you use it in your research or project:
 
 <hr>
 
-### Support
 
-This project needs some love! ❤️ You can help in various ways:
+### Contributors
+Thank the contributors!
 
-* **Become a Sponsor!** Support continued development
-* **Star this repo** at the GitHub page
-* **Report bugs** and request features via Issues
-* **Contribute code** via Pull Requests
-* **Share your use cases** - we'd love to hear how you use clustaudio!
+<p align="left">
+  <a href="https://github.com/erdogant/clustaudio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=erdogant/clustaudio" />
+  </a>
+</p>
 
-Why sponsor? Read more on the [Sponsor GitHub Page](https://erdogant.github.io/clustaudio/pages/html/Documentation.html#).
+### Maintainer
+* Erdogan Taskesen, GitHub: [erdogant](https://github.com/erdogant)
+* Contributions are welcome.
+* Yes! This library is entirely **free**, but it runs on coffee! :) Feel free to support with a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a>.
 
-<hr>
-
-### License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
-<hr>
-
-### Acknowledgments
-
-Built on top of excellent open-source libraries:
-- [librosa](https://librosa.org/) - Audio analysis
-- [scikit-learn](https://scikit-learn.org/) - Machine learning
-- [clusteval](https://github.com/erdogant/clusteval) - Cluster evaluation
-- [pca](https://github.com/erdogant/pca) - Dimensionality reduction
-
-<hr>
-
-**⭐️ Star this repo if you like it ⭐️**
-
-Made with ❤ by [Erdogan Taskesen](https://erdogant.github.io)
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy+me+a+coffee&emoji=&slug=erdogant&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/erdogant)
