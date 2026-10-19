@@ -55,28 +55,14 @@ Besides clustering of audio, the ``clustaudio`` library can also find the most s
     * It works out of the box.
 
 
-# 
-**⭐️ Star this repo if you like it ⭐️**
-#
-
-### Blogs
-
-* Read the [blog](https://towardsdatascience.com/a-step-by-step-guide-for-clustering-audio-12345) to get a structured overview of how to cluster audio files.
-
-# 
-
-### [Documentation pages](https://erdogant.github.io/clustaudio/)
-
-On the [documentation pages](https://erdogant.github.io/clustaudio/) you can find detailed information about the working of ``clustaudio`` with many examples. 
-
-# 
+#### [Documentation pages](https://erdogant.github.io/clustaudio/)
 
 
 ### Installation
 
-##### It is advisable to create a new environment (e.g. with Conda). 
+##### It is advisable to create a new environment
 ```bash
-conda create -n env_clustaudio python=3.12
+conda create -n env_clustaudio python=3.14
 conda activate env_clustaudio
 ```
 
