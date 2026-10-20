@@ -43,7 +43,7 @@ dependencies = [
     "librosa>=0.10.0",
     "soundfile>=0.12.0",
     "scipy>=1.9.0",
-    "numpy>=1.21.0,<2.0.0",
+    "numpy",
     
     # Core ML and data science
     "scikit-learn>=1.0.0",
